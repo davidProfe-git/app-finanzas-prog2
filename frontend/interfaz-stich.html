@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Manrope:wght@500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#2d2d7f", // Deep Blue
+                        "accent": "#2575fc",  // Vibrant Blue
+                        "background": "#ffffff", // White
+                        "surface": "#ffffff",
+                        "surface-container": "#f8faff",
+                        "surface-container-high": "#f0f4ff",
+                        "on-background": "#1a1a1a",
+                        "on-surface": "#1a1a1a",
+                        "on-primary": "#ffffff",
+                        "on-accent": "#ffffff",
+                        "outline": "#d1d5db",
+                        "outline-variant": "#e5e7eb",
+                        "success": "#10b981",
+                        "error": "#ef4444"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px",
+                        "base": "4px",
+                        "sm": "8px",
+                        "margin-desktop": "48px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "label-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-lg": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0.5px", "fontWeight": "400" }],
+                        "title-lg": ["22px", { "lineHeight": "28px", "fontWeight": "500" }],
+                        "display-lg": ["57px", { "lineHeight": "64px", "letterSpacing": "-0.25px", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.25px", "fontWeight": "400" }],
+                        "headline-md": ["28px", { "lineHeight": "36px", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background font-body-md antialiased">
+    <!-- TopAppBar -->
+    <header
+        class="fixed top-0 w-full z-50 bg-primary text-on-primary shadow-md h-16 flex justify-between items-center px-margin-mobile">
+        <div class="flex items-center gap-sm">
+            <img alt="Logo de Poli Gastos" class="h-8 w-8 object-contain brightness-0 invert"
+                data-alt="A minimalist logo for a finance app named 'Poli Gastos' featuring a clean, geometric wallet icon with a rising bar chart and a subtle coin element. The aesthetic is strictly modern Material Design, utilizing a professional palette of deep purple and mint green accents on a pristine white background. The image reflects financial control and clarity."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmsoe2V_zYKzcz8I3SfSL2zA8jjZ3mr2OUt-r55UfjxHN1faiX0wiwZ9WXaZoJlXtZTMCpRXoyepas4tWulJX73BtzNKOeousCVycGn7odJx0BDeQfVlvQ7e2bw53Ob_tXKci0g-NhKlDthBDNilRM6CEJ8Bu5E8aDEk6RYafZZZ-tWIs4VZrrFXjwJlhCLW_cpIEJn2S2pGruM-g_JqQqIrZah7sjn77RBpApsw5wgof0A5CVf_XtgQCShmDVtEsCNSSQudZmX28" />
+            <span class="font-title-lg text-title-lg font-bold">Poli Gastos</span>
+        </div>
+        <nav class="hidden md:flex gap-lg">
+            <a class="text-on-primary border-b-2 border-accent font-bold px-3 py-2" href="#">Dashboard</a>
+            <a class="text-on-primary/80 hover:text-on-primary transition-colors px-3 py-2 rounded-lg"
+                href="#">Transacciones</a>
+            <a class="text-on-primary/80 hover:text-on-primary transition-colors px-3 py-2 rounded-lg"
+                href="#">Presupuesto</a>
+            <a class="text-on-primary/80 hover:text-on-primary transition-colors px-3 py-2 rounded-lg"
+                href="#">Perfil</a>
+        </nav>
+        <div class="flex items-center gap-sm">
+            <button
+                class="material-symbols-outlined text-on-primary hover:bg-white/10 transition-colors p-2 rounded-full active:scale-95 duration-150">notifications</button>
+            <button
+                class="material-symbols-outlined text-on-primary hover:bg-white/10 transition-colors p-2 rounded-full active:scale-95 duration-150">settings</button>
+        </div>
+    </header>
+    <main class="pt-24 pb-28 px-margin-mobile max-w-[1200px] mx-auto min-h-screen">
+        <!-- Entry Form Section -->
+        <section class="flex flex-col items-center justify-center w-full mb-xl">
+            <div class="w-full max-w-lg bg-white rounded-xl shadow-xl p-lg border border-outline-variant">
+                <div class="mb-lg">
+                    <label class="block font-label-lg text-label-lg text-on-surface/60 mb-xs">Monto $</label>
+                    <input
+                        class="w-full text-[40px] font-display-lg text-primary bg-transparent border-none focus:ring-0 placeholder:text-outline-variant p-0 leading-tight"
+                        placeholder="0.00" type="text" />
+                </div>
+                <div class="mb-lg">
+                    <label class="block font-label-lg text-label-lg text-on-surface/60 mb-sm">Categoría</label>
+                    <div class="relative">
+                        <select
+                            class="w-full appearance-none bg-surface-container border border-outline rounded-lg px-md py-sm font-body-lg text-on-surface focus:border-accent focus:ring-1 focus:ring-accent outline-none">
+                            <option>Seleccionar categoría</option>
+                            <option>Comida y Bebida</option>
+                            <option>Transporte</option>
+                            <option>Vivienda</option>
+                            <option>Entretenimiento</option>
+                            <option>Salud</option>
+                        </select>
+                        <span
+                            class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface/60">expand_more</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-md">
+                    <button
+                        class="flex items-center justify-center gap-sm bg-success text-on-primary font-bold py-md rounded-full shadow-md hover:brightness-110 active:scale-95 transition-all">
+                        <span class="material-symbols-outlined">add_circle</span>
+                        Ingresos
+                    </button>
+                    <button
+                        class="flex items-center justify-center gap-sm bg-error text-on-primary font-bold py-md rounded-full shadow-md hover:brightness-110 active:scale-95 transition-all">
+                        <span class="material-symbols-outlined">remove_circle</span>
+                        Gastos
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- Stats Visualization -->
+        <section class="grid grid-cols-1 gap-gutter mb-xl max-w-3xl mx-auto">
+            <div
+                class="bg-surface-container-high p-lg rounded-xl shadow-sm border border-outline-variant h-40 flex flex-col justify-between">
+                <div>
+                    <p class="font-label-lg text-label-lg text-on-surface/60">Presupuesto Mensual</p>
+                    <div class="w-full bg-outline-variant h-2 rounded-full mt-sm">
+                        <div class="bg-accent h-full rounded-full w-[65%]"></div>
+                    </div>
+                </div>
+                <div class="flex justify-between items-end">
+                    <p class="font-body-md text-body-md text-on-surface/80">Gastado: $2,800 / $4,500</p>
+                    <span class="material-symbols-outlined text-accent">account_balance_wallet</span>
+                </div>
+            </div>
+        </section>
+        <!-- Recent Activity -->
+        <section class="w-full max-w-3xl mx-auto">
+            <div class="flex justify-between items-center mb-md">
+                <h3 class="font-headline-md text-headline-md text-primary">Actividad Reciente</h3>
+                <button class="text-accent font-bold text-label-lg hover:underline">Ver todo</button>
+            </div>
+            <div class="space-y-sm">
+                <!-- Transaction Item 1 -->
+                <div
+                    class="flex items-center justify-between p-md bg-white rounded-xl shadow-sm border border-outline-variant hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-md">
+                        <div
+                            class="w-10 h-10 bg-surface-container text-accent rounded-lg flex items-center justify-center">
+                            <span class="material-symbols-outlined">shopping_cart</span>
+                        </div>
+                        <div>
+                            <p class="font-body-lg text-body-lg text-on-surface font-medium">Supermercado Líder</p>
+                            <p class="font-body-md text-body-md text-on-surface/60">Hoy, 10:45 AM</p>
+                        </div>
+                    </div>
+                    <p class="font-body-lg text-body-lg text-error font-bold">-$85.00</p>
+                </div>
+                <!-- Transaction Item 2 -->
+                <div
+                    class="flex items-center justify-between p-md bg-white rounded-xl shadow-sm border border-outline-variant hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-md">
+                        <div
+                            class="w-10 h-10 bg-surface-container text-accent rounded-lg flex items-center justify-center">
+                            <span class="material-symbols-outlined">payments</span>
+                        </div>
+                        <div>
+                            <p class="font-body-lg text-body-lg text-on-surface font-medium">Pago de Nómina</p>
+                            <p class="font-body-md text-body-md text-on-surface/60">Ayer</p>
+                        </div>
+                    </div>
+                    <p class="font-body-lg text-body-lg text-success font-bold">+$2,400.00</p>
+                </div>
+                <!-- Transaction Item 3 -->
+                <div
+                    class="flex items-center justify-between p-md bg-white rounded-xl shadow-sm border border-outline-variant hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-md">
+                        <div
+                            class="w-10 h-10 bg-surface-container text-accent rounded-lg flex items-center justify-center">
+                            <span class="material-symbols-outlined">local_gas_station</span>
+                        </div>
+                        <div>
+                            <p class="font-body-lg text-body-lg text-on-surface font-medium">Gasolinera Shell</p>
+                            <p class="font-body-md text-body-md text-on-surface/60">24 Oct, 2023</p>
+                        </div>
+                    </div>
+                    <p class="font-body-lg text-body-lg text-error font-bold">-$50.25</p>
+                </div>
+            </div>
+        </section>
+        <!-- Decorative Image Context -->
+        <section class="mt-xl opacity-80">
+        </section>
+    </main>
+    <!-- BottomNavBar -->
+    <nav
+        class="md:hidden fixed bottom-0 w-full z-50 bg-white border-t border-outline-variant rounded-t-xl shadow-2xl h-20 flex justify-around items-center px-sm">
+        <button class="flex flex-col items-center justify-center text-accent font-bold active:scale-90 duration-200">
+            <span class="material-symbols-outlined fill-current">dashboard</span>
+            <span class="font-label-lg text-label-lg">Dashboard</span>
+        </button>
+        <button
+            class="flex flex-col items-center justify-center text-on-surface/60 hover:text-accent transition-all active:scale-90 duration-200">
+            <span class="material-symbols-outlined">receipt_long</span>
+            <span class="font-label-lg text-label-lg">Transacciones</span>
+        </button>
+        <button
+            class="flex flex-col items-center justify-center text-on-surface/60 hover:text-accent transition-all active:scale-90 duration-200">
+            <span class="material-symbols-outlined">account_balance_wallet</span>
+            <span class="font-label-lg text-label-lg">Presupuesto</span>
+        </button>
+        <button
+            class="flex flex-col items-center justify-center text-on-surface/60 hover:text-accent transition-all active:scale-90 duration-200">
+            <span class="material-symbols-outlined">person</span>
+            <span class="font-label-lg text-label-lg">Perfil</span>
+        </button>
+    </nav>
+    <!-- FAB -->
+    <button
+        class="fixed bottom-24 right-margin-mobile md:bottom-8 md:right-8 bg-accent text-on-accent w-14 h-14 rounded-full shadow-lg flex items-center justify-center hover:shadow-xl hover:scale-110 active:scale-95 transition-all z-40">
+        <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">add</span>
+    </button>
+</body>
+
+</html>
