@@ -1,14 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Programacion 2</title>
+    <title>Control Financiero</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div class="contenedor">
-        <input type="text" placeholder=""> 
+
+        <h1>Control Financiero</h1>
+
+        <!-- TOTAL -->
+        <div class="total">
+            <h2>Total Disponible</h2>
+            <p>$1.300.000</p>
+        </div>
+
+        <!-- BOTONES -->
+        <div class="botones">
+
+            <div class="opcion">
+                <button class="btn-ingresos">+</button>
+                <span>Ingresos</span>
+            </div>
+
+            <div class="opcion">
+                <button class="btn-gastos">-</button>
+                <span>Gastos</span>
+            </div>
+
+        </div>
+
+        <!-- SELECT -->
+        <div class="formulario">
+
+            <label>¿En qué gastaste?</label>
+
+            <select>
+                <option>Selecciona una opción</option>
+                <option>Comida</option>
+                <option>Servicios</option>
+                <option>Transporte</option>
+                <option>Internet</option>
+                <option>Ropa</option>
+            </select>
+
+            <label>¿Cuánto gastaste?</label>
+
+            <input type="number" placeholder="$20.000">
+
+            <button class="guardar">
+                Guardar gasto
+            </button>
+
+        </div>
+
     </div>
+
 </body>
 </html>
