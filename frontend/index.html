@@ -8,38 +8,40 @@
 </head>
 <body>
     <h1>Gestionador de Ingresos y Gastos</h1>
-    <div>
-        <input type="text">
-    </div>
-    <div>
-        <label for="opciones">Elige una opción:</label>
-        <select name="opciones" id="opciones">
-            <option value="Categoria 1">Sueldo</option>
-            <option value="Categoria 2">Ingreso extra</option>
-            <option value="Categoria 3">Arriendo</option>
-        </select>
-    </div>
-    <div>
+    
+    <div class="tarjeta">
+
+        <div class="campo">
+            <label for="valor">Valor</label>
+            <input type="text" id="valor" placeholder="Ej: 500000">
+        </div>
+
+        <div class="campo">
+            <label for="opciones">Elige una opción:</label>
+            <select name="opciones" id="opciones">
+                <option value="Categoria 1">Sueldo</option>
+                <option value="Categoria 2">Ingreso extra</option>
+                <option value="Categoria 3">Arriendo</option>
+            </select>
+        </div>
+
         <button>Registrar</button>
-    </div>
-    <div>
-        <div>
+
+        <div class="contenedor-tablas">
             <table>
-                <tr border="1">
-                    <th>INGRESOS</th>
+                <tr>
+                    <th class="th-ingresos" colspan="2">INGRESOS</th>
                 </tr>
-                <tr border="1">
+                <tr>
                     <th>Categoría</th>
                     <th>Valor</th>
                 </tr>
             </table>
-        </div>
-        <div>
             <table>
-                <tr border="1">
-                    <th>GASTOS</th>
+                <tr>
+                    <th class="th-gastos" colspan="2">GASTOS</th>
                 </tr>
-                <tr border="1">
+                <tr>
                     <th>Categoría</th>
                     <th>Valor</th>
                 </tr>
