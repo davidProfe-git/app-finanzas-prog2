@@ -1,0 +1,15 @@
+{
+  "name": "finanzas-poli",
+  "version": "1.0.0",
+  "description": "backend",
+  "license": "ISC",
+  "author": "Miguel Angel",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
