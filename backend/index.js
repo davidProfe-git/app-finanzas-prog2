@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-let name='Miguel Angel'
+let name='Miguel Angel Calderon'
 
 app.get('/miguel',(request,response)=>{
     response.send('<h1>Hola, Soy '+name+'</h1><p>Soy estudiante del politécnico</p>')
