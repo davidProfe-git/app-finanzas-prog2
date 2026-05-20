@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">      
+<html lang="es">      
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,20 +9,72 @@
     
 <body>
     <h1>Gastos en Venezolanas</h1>
-  <div class="contenedor">
-       <input type="text" placeholder="monto$">
-       <select name="tipo" id="tipo">
-         <option value="comida">comida</option>
-         <option value="servicios">servicios</option>
-         <option value="arriendo">arriendo</option>
-         <option value="transporte">transporte</option>
-         <option value="salud">salud</option>
-         <option value="educacion">educacion</option>
-         <option value="otros">otros</option>
-       </select>
-       <button>gastos</button>
-       <button>ingresos</button>     
+  <div class="container">
+       
+       <div class="balance">
+         <span calss ="currecy">$</span>
+         <span class="amount">0</span>
+       </div>
+
+       <div class="buttons">
+          <button class="btn ingresos" onclick="toggleIngresos()"> 
+            +Ingresos
+          </button>
+        
+          <button class="btn gastos" onclick="toggleGastos()">
+            -Gastos
+          </button>
+       </div>
+      
+       <div id="menuingresos" class="menu">
+
+          <button onclick="agregarIngresos(10)">+10</button>
+          <button onclick="agregarIngresos(20)">+20</button>
+          <button onclick="agregarIngresos(50)">+50</button>
+          <button onclick="agregarIngresos(100)">+100</button>
+          <button onclick="agregarIngresos()">otro</button>
+
+       </div>
+
+        <div id="menugastos" class="menu">
+  
+            <button onclick="agregarGastos('salud', 10)">-10</button>
+            <button onclick="agregarGastos('servicios', 20)">-20</button>
+            <button onclick="agregarGastos('arriendo', 50)">-50</button>
+            <button onclick="agregarGastos('transporte', 100)">-100</button>
+            <button onclick="agregarGastos('otros', 200)">-200</button>
+
+        </div>
+        
+        <table>
+           <tr>
+              <th>Categoria</th>
+              <th>veces</th>
+           </tr>
+            <tr>
+                <td>Salud</td>
+                <td id="salud-count">0</td>
+            </tr>
+            <tr>
+                <td>Servicios</td>
+                <td id="servicios-count">0</td>
+            </tr>
+            <tr>
+                <td>Arriendo</td>
+                <td id="arriendo-count">0</td>
+            </tr>
+            <tr>
+                <td>Transporte</td>
+                <td id="transporte-count">0</td>
+            </tr>
+            <tr>
+                <td>Otros</td>
+                <td id="otros-count">0</td>
+            </tr>
+         </table>
+
     </div>
+
 </body>
 
 </html>
