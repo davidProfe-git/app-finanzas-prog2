@@ -440,3 +440,113 @@ input[type="number"]::-webkit-inner-spin-button {
     .botones { gap: 32px; }
     .btn-ingresos, .btn-gastos { width: 62px; height: 62px; font-size: 28px; }
 }
+
+/* ───────────────────────────────────────────
+   HISTORIAL DE GASTOS
+─────────────────────────────────────────── */
+.historial {
+    margin-top: 28px;
+}
+
+.historial-encabezado {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.historial-titulo {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--oscuro);
+    letter-spacing: -0.2px;
+}
+
+.historial-badge {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gris-400);
+    background: var(--gris-100);
+    border: 1.5px solid var(--gris-200);
+    padding: 3px 10px;
+    border-radius: 99px;
+    letter-spacing: 0.3px;
+}
+
+.historial-lista {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.historial-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 14px;
+    border-radius: var(--radio-md);
+    background: var(--blanco);
+    border: 1.5px solid var(--gris-200);
+    transition: transform var(--transicion), box-shadow var(--transicion), border-color var(--transicion);
+    animation: item-entrada 0.35s cubic-bezier(.4,0,.2,1) both;
+}
+
+.historial-item:nth-child(1) { animation-delay: 0.05s; }
+.historial-item:nth-child(2) { animation-delay: 0.10s; }
+.historial-item:nth-child(3) { animation-delay: 0.15s; }
+.historial-item:nth-child(4) { animation-delay: 0.20s; }
+.historial-item:nth-child(5) { animation-delay: 0.25s; }
+.historial-item:nth-child(6) { animation-delay: 0.30s; }
+
+@keyframes item-entrada {
+    from { opacity: 0; transform: translateX(-10px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+.historial-item:hover {
+    transform: translateX(4px);
+    box-shadow: var(--sombra-sm);
+    border-color: var(--gris-200);
+}
+
+.item-icono {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radio-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+.item-nombre {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--oscuro);
+}
+
+.item-fecha {
+    font-size: 12px;
+    color: var(--gris-400);
+    font-family: 'DM Mono', monospace;
+}
+
+.item-monto {
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'DM Mono', monospace;
+    flex-shrink: 0;
+}
+
+.item-monto.gasto   { color: var(--rojo); }
+.item-monto.ingreso { color: var(--verde); }
