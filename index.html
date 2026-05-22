@@ -4,52 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control Financiero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <div class="fondo-decorativo"></div>
+
     <div class="contenedor">
 
-        <h1>Control Financiero</h1>
+        <header class="encabezado">
+            <div class="logo-marca">
+                <span class="icono-logo">◈</span>
+                <span class="nombre-app">Finanzas</span>
+            </div>
+            <span class="fecha-hoy" id="fechaHoy"></span>
+        </header>
 
         <!-- TOTAL -->
         <div class="total">
-            <h2>Total Disponible</h2>
-            <p>$1.300.000</p>
+            <p class="total-etiqueta">Balance disponible</p>
+            <p class="total-monto">$1.300.000</p>
+            <div class="total-barra">
+                <div class="total-barra-fill"></div>
+            </div>
+            <div class="total-stats">
+                <div class="stat">
+                    <span class="stat-dot ingreso"></span>
+                    <span class="stat-label">Ingresos</span>
+                    <span class="stat-valor">$2.500.000</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-dot gasto"></span>
+                    <span class="stat-label">Gastos</span>
+                    <span class="stat-valor">$1.200.000</span>
+                </div>
+            </div>
         </div>
 
         <!-- BOTONES -->
         <div class="botones">
 
             <div class="opcion">
-                <button class="btn-ingresos">+</button>
-                <span>Ingresos</span>
+                <button class="btn-ingresos">
+                    <span class="btn-icono">+</span>
+                </button>
+                <span class="btn-etiqueta">Ingresos</span>
             </div>
 
             <div class="opcion">
-                <button class="btn-gastos">-</button>
-                <span>Gastos</span>
+                <button class="btn-gastos">
+                    <span class="btn-icono">−</span>
+                </button>
+                <span class="btn-etiqueta">Gastos</span>
             </div>
 
         </div>
 
-        <!-- SELECT -->
+        <!-- FORMULARIO -->
         <div class="formulario">
 
-            <label>¿En qué gastaste?</label>
+            <p class="form-titulo">Registrar gasto</p>
 
-            <select>
-                <option>Selecciona una opción</option>
-                <option>Comida</option>
-                <option>Servicios</option>
-                <option>Transporte</option>
-                <option>Internet</option>
-                <option>Ropa</option>
-            </select>
+            <div class="campo">
+                <label for="categoria">Categoría</label>
+                <div class="select-wrapper">
+                    <select id="categoria">
+                        <option value="">Selecciona una opción</option>
+                        <option>🍔 Comida</option>
+                        <option>💡 Servicios</option>
+                        <option>🚌 Transporte</option>
+                        <option>📶 Internet</option>
+                        <option>👕 Ropa</option>
+                    </select>
+                    <span class="select-arrow">›</span>
+                </div>
+            </div>
 
-            <label>¿Cuánto gastaste?</label>
-
-            <input type="number" placeholder="$20.000">
+            <div class="campo">
+                <label for="monto">Monto</label>
+                <div class="input-wrapper">
+                    <span class="input-prefijo">$</span>
+                    <input type="number" id="monto" placeholder="20.000">
+                </div>
+            </div>
 
             <button class="guardar">
                 Guardar gasto
@@ -58,6 +99,14 @@
         </div>
 
     </div>
+
+    <script>
+        const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+        const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+        const hoy = new Date();
+        document.getElementById('fechaHoy').textContent =
+            `${dias[hoy.getDay()]}, ${hoy.getDate()} de ${meses[hoy.getMonth()]}`;
+    </script>
 
 </body>
 </html>
