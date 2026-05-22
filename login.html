@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Financiero — Iniciar sesión</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+
+/* ── VARIABLES ─────────────────────────────── */
+:root {
+    --verde:      #00c172;
+    --verde-dim:  rgba(0,193,114,0.15);
+    --oscuro:     #0f1117;
+    --gris-900:   #1a1d27;
+    --gris-700:   #3a3f52;
+    --gris-500:   #5c6380;
+    --gris-300:   #c2c8dc;
+    --gris-100:   #f4f5fa;
+    --blanco:     #ffffff;
+    --error:      #f04a5e;
+    --trans:      0.22s cubic-bezier(.4,0,.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── FONDO ─────────────────────────────────── */
+body {
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--gris-900);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Orbes de fondo */
+.orb {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(80px);
+    opacity: 0.55;
+}
+.orb-1 {
+    width: 480px; height: 480px;
+    background: radial-gradient(circle, #00c172 0%, transparent 70%);
+    top: -160px; left: -120px;
+    animation: drift1 12s ease-in-out infinite alternate;
+}
+.orb-2 {
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, #0077ff 0%, transparent 70%);
+    bottom: -100px; right: -80px;
+    animation: drift2 15s ease-in-out infinite alternate;
+    opacity: 0.25;
+}
+.orb-3 {
+    width: 240px; height: 240px;
+    background: radial-gradient(circle, #00c172 0%, transparent 70%);
+    bottom: 20%; left: 60%;
+    animation: drift3 18s ease-in-out infinite alternate;
+    opacity: 0.18;
+}
+
+@keyframes drift1 {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(40px, 30px) scale(1.1); }
+}
+@keyframes drift2 {
+    from { transform: translate(0, 0); }
+    to   { transform: translate(-30px, -20px); }
+}
+@keyframes drift3 {
+    from { transform: translate(0, 0); }
+    to   { transform: translate(20px, 40px); }
+}
+
+/* Cuadrícula de puntos */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── TARJETA ────────────────────────────────── */
+.tarjeta {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 400px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 28px;
+    padding: 44px 40px 40px;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow:
+        0 0 0 1px rgba(0,193,114,0.08),
+        0 32px 80px rgba(0,0,0,0.45);
+    animation: subir 0.55s cubic-bezier(.4,0,.2,1) both;
+}
+
+@keyframes subir {
+    from { opacity: 0; transform: translateY(32px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Borde superior verde */
+.tarjeta::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 40px; right: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--verde), transparent);
+    border-radius: 99px;
+}
+
+/* ── LOGO ───────────────────────────────────── */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+}
+
+.logo-icono {
+    width: 40px; height: 40px;
+    background: var(--verde-dim);
+    border: 1px solid rgba(0,193,114,0.3);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    animation: subir 0.55s 0.1s cubic-bezier(.4,0,.2,1) both;
+}
+
+.logo-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    animation: subir 0.55s 0.15s cubic-bezier(.4,0,.2,1) both;
+}
+
+.logo-nombre {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--blanco);
+    letter-spacing: -0.3px;
+}
+
+.logo-sub {
+    font-size: 11px;
+    color: var(--gris-500);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.5px;
+}
+
+/* ── TÍTULOS ────────────────────────────────── */
+.titulo {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--blanco);
+    letter-spacing: -0.8px;
+    line-height: 1.1;
+    margin-bottom: 6px;
+    animation: subir 0.55s 0.2s cubic-bezier(.4,0,.2,1) both;
+}
+
+.subtitulo {
+    font-size: 14px;
+    color: var(--gris-500);
+    margin-bottom: 32px;
+    animation: subir 0.55s 0.25s cubic-bezier(.4,0,.2,1) both;
+}
+
+/* ── CAMPOS ─────────────────────────────────── */
+.campo {
+    margin-bottom: 16px;
+    animation: subir 0.55s 0.3s cubic-bezier(.4,0,.2,1) both;
+}
+
+.campo:nth-child(2) { animation-delay: 0.35s; }
+
+label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gris-300);
+    margin-bottom: 8px;
+}
+
+.input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icono {
+    position: absolute;
+    left: 14px;
+    font-size: 16px;
+    pointer-events: none;
+    opacity: 0.5;
+    transition: opacity var(--trans);
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 14px 14px 14px 42px;
+    background: rgba(255,255,255,0.06);
+    border: 1.5px solid rgba(255,255,255,0.10);
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--blanco);
+    outline: none;
+    transition: border-color var(--trans), background var(--trans), box-shadow var(--trans);
+    caret-color: var(--verde);
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: var(--gris-500);
+    font-size: 14px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: var(--verde);
+    background: rgba(0,193,114,0.06);
+    box-shadow: 0 0 0 3px rgba(0,193,114,0.12);
+}
+
+input[type="text"]:focus + .input-icono,
+input[type="password"]:focus + .input-icono {
+    opacity: 1;
+}
+
+/* Ojito contraseña */
+.ojo {
+    position: absolute;
+    right: 14px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    opacity: 0.4;
+    padding: 4px;
+    transition: opacity var(--trans);
+}
+.ojo:hover { opacity: 0.9; }
+
+/* ── OLVIDÉ CONTRASEÑA ──────────────────────── */
+.olvidaste {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -6px;
+    margin-bottom: 28px;
+    animation: subir 0.55s 0.4s cubic-bezier(.4,0,.2,1) both;
+}
+
+.olvidaste a {
+    font-size: 12px;
+    color: var(--verde);
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity var(--trans);
+}
+.olvidaste a:hover { opacity: 1; }
+
+/* ── BOTÓN INGRESAR ─────────────────────────── */
+.btn-ingresar {
+    width: 100%;
+    padding: 15px;
+    background: var(--verde);
+    color: var(--oscuro);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    letter-spacing: 0.2px;
+    transition: transform var(--trans), box-shadow var(--trans), filter var(--trans);
+    box-shadow: 0 6px 28px rgba(0,193,114,0.35);
+    animation: subir 0.55s 0.45s cubic-bezier(.4,0,.2,1) both;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-ingresar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.btn-ingresar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(0,193,114,0.45);
+    filter: brightness(1.07);
+}
+
+.btn-ingresar:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 16px rgba(0,193,114,0.25);
+}
+
+/* ── DIVIDER ────────────────────────────────── */
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0;
+    animation: subir 0.55s 0.5s cubic-bezier(.4,0,.2,1) both;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+}
+
+.divider span {
+    font-size: 12px;
+    color: var(--gris-500);
+    white-space: nowrap;
+}
+
+/* ── REGISTRO ───────────────────────────────── */
+.registro {
+    text-align: center;
+    font-size: 13px;
+    color: var(--gris-500);
+    animation: subir 0.55s 0.55s cubic-bezier(.4,0,.2,1) both;
+}
+
+.registro a {
+    color: var(--verde);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity var(--trans);
+}
+.registro a:hover { opacity: 0.75; }
+
+/* ── RESPONSIVE ─────────────────────────────── */
+@media (max-width: 440px) {
+    .tarjeta {
+        padding: 36px 24px 32px;
+        border-radius: 20px;
+    }
+    .titulo { font-size: 22px; }
+    .tarjeta::before { left: 24px; right: 24px; }
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- FONDO -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- TARJETA -->
+    <div class="tarjeta">
+
+        <!-- Logo -->
+        <div class="logo">
+            <div class="logo-icono">◈</div>
+            <div class="logo-texto">
+                <span class="logo-nombre">Finanzas</span>
+                <span class="logo-sub">control financiero</span>
+            </div>
+        </div>
+
+        <h1 class="titulo">Bienvenido<br>de nuevo</h1>
+        <p class="subtitulo">Ingresa tus datos para continuar</p>
+
+        <!-- Usuario -->
+        <div class="campo">
+            <label for="usuario">Usuario</label>
+            <div class="input-wrap">
+                <input type="text" id="usuario" placeholder="tu@correo.com" autocomplete="username">
+                <span class="input-icono">👤</span>
+            </div>
+        </div>
+
+        <!-- Contraseña -->
+        <div class="campo">
+            <label for="password">Contraseña</label>
+            <div class="input-wrap">
+                <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
+                <span class="input-icono">🔒</span>
+                <button class="ojo" type="button" id="togglePass" aria-label="Mostrar contraseña">👁️</button>
+            </div>
+        </div>
+
+        <!-- Olvidé contraseña -->
+        <div class="olvidaste">
+            <a href="#">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <!-- Botón -->
+        <button class="btn-ingresar" onclick="window.location.href='index.html'">
+  Ingresar
+</button>
+
+        <!-- Divider -->
+        <div class="divider"><span>¿No tienes cuenta?</span></div>
+
+        <!-- Registro -->
+        <p class="registro">
+            <a href="#">Crear cuenta nueva →</a>
+        </p>
+
+    </div>
+
+    <script>
+        // Mostrar / ocultar contraseña
+        const toggle = document.getElementById('togglePass');
+        const pass   = document.getElementById('password');
+        toggle.addEventListener('click', () => {
+            const visible = pass.type === 'text';
+            pass.type = visible ? 'password' : 'text';
+            toggle.textContent = visible ? '👁️' : '🙈';
+        });
+    </script>
+
+</body>
+</html>
