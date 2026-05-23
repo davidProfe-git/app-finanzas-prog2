@@ -1,0 +1,29 @@
+{
+  "name": "app-gestionfinanzas-prog2",
+  "version": "1.0.0",
+  "description": "aplicación de gastos personales para programación 2",
+  "keywords": [],
+  "homepage": "https://github.com/davidProfe-git/app-finanzas-prog2#readme",
+  "bugs": {
+    "url": "https://github.com/davidProfe-git/app-finanzas-prog2/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidProfe-git/app-finanzas-prog2.git"
+  },
+  "license": "ISC",
+  "author": "Luisa",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mysql2": "^3.22.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
