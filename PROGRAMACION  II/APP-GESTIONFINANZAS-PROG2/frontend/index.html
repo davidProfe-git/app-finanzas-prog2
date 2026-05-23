@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion de Finanzas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+<base target="_blank">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h3><i class="fas fa-coins"></i> Gestion de Finanzas</h3>
+      <p id="userDisplay"></p>
+    </div>
+    <nav class="sidebar-nav">
+      
+      <a href="#" onclick="mostrarSeccion('transacciones')">
+        <i class="fas fa-exchange-alt"></i> Movimientos
+      </a>
+      <a href="#" onclick="mostrarSeccion('registros')">
+        <i class="fas fa-chart-line"></i> Registros 
+      </a>
+      <a href="#" onclick="mostrarSeccion('configuracion')">
+        <i class="fas fa-cog"></i> Configuración
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="btn btn-outline-light btn-sm w-100" data-bs-toggle="modal" data-bs-target="#perfilModal">
+        <i class="fas fa-user"></i> Mi Perfil
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+
+    <!-- Header -->
+    <header class="top-bar">
+      <h2 id="tituloSeccion">Dashboard</h2>
+      <div class="fecha-actual" id="fechaActual"></div>
+    </header>
+
+    <!-- DASHBOARD -->
+    <section id="seccion-dashboard" class="seccion-activa">
+
+      <!-- KPIs -->
+      <div class="row g-4 mb-4">
+        <div class="col-md-4">
+          <div class="kpi-card kpi-ingresos">
+            <div class="kpi-icon"><i class="fas fa-arrow-trend-up"></i></div>
+            <div class="kpi-data">
+              <span class="kpi-label">Ingresos del Mes</span>
+              <span class="kpi-valor" id="kpiIngresos">$0</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="kpi-card kpi-gastos">
+            <div class="kpi-icon"><i class="fas fa-arrow-trend-down"></i></div>
+            <div class="kpi-data">
+              <span class="kpi-label">Gastos del Mes</span>
+              <span class="kpi-valor" id="kpiGastos">$0</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="kpi-card kpi-neto">
+            <div class="kpi-icon"><i class="fas fa-piggy-bank"></i></div>
+            <div class="kpi-data">
+              <span class="kpi-label">Ahorro Neto</span>
+              <span class="kpi-valor" id="kpiNeto">$0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Acciones Rápidas -->
+      <div class="row g-4 mb-4">
+        <div class="col-md-6">
+          <div class="action-card">
+            <h4><i class="fas fa-plus-circle text-success"></i> Registrar Entrada</h4>
+            <p>Agrega un nuevo ingreso a tu cuenta</p>
+            <button class="btn btn-success" onclick="abrirModal('ingreso')">
+              <i class="fas fa-plus"></i> Nuevo Ingreso
+            </button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="action-card">
+            <h4><i class="fas fa-minus-circle text-danger"></i> Registrar Salida</h4>
+            <p>Registra un gasto o compra</p>
+            <button class="btn btn-danger" onclick="abrirModal('gasto')">
+              <i class="fas fa-minus"></i> Nuevo Gasto
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gráfico de barras simple -->
+      <div class="card mb-4">
+        <div class="card-header bg-white">
+          <h5 class="mb-0"><i class="fas fa-chart-bar"></i> Control Mensual</h5>
+        </div>
+        <div class="card-body">
+          <div class="chart-container">
+            <div class="bar-chart" id="chartMensual">
+              <!-- Se genera con JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Últimos Movimientos -->
+      <div class="card">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+          <h5 class="mb-0"><i class="fas fa-clock"></i> Últimos Movimientos</h5>
+          <button class="btn btn-sm btn-outline-primary" onclick="mostrarSeccion('transacciones')">
+            Ver todos
+          </button>
+        </div>
+        <div class="card-body p-0">
+          <div id="ultimosMovimientos" class="movimientos-lista">
+            <div class="text-center text-muted py-5">
+              <i class="fas fa-inbox fa-3x mb-3"></i>
+              <p>No hay movimientos registrados aún</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRANSACCIONES -->
+    <section id="seccion-transacciones" class="seccion-oculta">
+      <div class="card">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+          <h5 class="mb-0"><i class="fas fa-list"></i> Todos los Movimientos</h5>
+          <div>
+            <button class="btn btn-sm btn-outline-secondary me-2" onclick="filtrarMovimientos('todos')">Todos</button>
+            <button class="btn btn-sm btn-outline-success me-2" onclick="filtrarMovimientos('ingreso')">Ingresos</button>
+            <button class="btn btn-sm btn-outline-danger" onclick="filtrarMovimientos('gasto')">Gastos</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead class="table-light">
+                <tr>
+                  <th>Fecha</th>
+                  <th>Tipo</th>
+                  <th>Categoría</th>
+                  <th>Descripción</th>
+                  <th class="text-end">Monto</th>
+                  <th class="text-center">Acción</th>
+                </tr>
+              </thead>
+              <tbody id="tablaTransacciones">
+                <!-- Se genera con JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REPORTES -->
+    <section id="seccion-reportes" class="seccion-oculta">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header bg-white">
+              <h5 class="mb-0"><i class="fas fa-chart-pie"></i> Distribución de Gastos</h5>
+            </div>
+            <div class="card-body">
+              <div id="distribucionGastos" class="distribucion-container">
+                <div class="text-center text-muted py-4">
+                  <p>Registra gastos para ver el análisis</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header bg-white">
+              <h5 class="mb-0"><i class="fas fa-table"></i> Resumen por Categoría</h5>
+            </div>
+            <div class="card-body">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th>Categoría</th>
+                    <th class="text-center">#</th>
+                    <th class="text-end">Total</th>
+                  </tr>
+                </thead>
+                <tbody id="resumenCategorias">
+                  <tr><td colspan="3" class="text-center text-muted">Sin datos</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONFIGURACIÓN -->
+    <section id="seccion-configuracion" class="seccion-oculta">
+      <div class="card">
+        <div class="card-header bg-white">
+          <h5 class="mb-0"><i class="fas fa-cog"></i> Configuración</h5>
+        </div>
+        <div class="card-body">
+          <h6 class="mb-3">Categorías de Gastos</h6>
+          <div id="listaCategoriasConfig" class="mb-4">
+            <!-- Se genera con JS -->
+          </div>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" id="nuevaCategoria" placeholder="Nueva categoría...">
+            <button class="btn btn-primary" onclick="agregarCategoria()">Agregar</button>
+          </div>
+          <hr>
+          <h6 class="mb-3 text-danger">Zona de Peligro</h6>
+          <button class="btn btn-outline-danger" onclick="limpiarTodo()">
+            <i class="fas fa-trash-alt"></i> Eliminar todos los datos
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- MODALES -->
+
+  <!-- Modal Perfil -->
+  <div class="modal fade" id="perfilModal" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title"><i class="fas fa-user"></i> Mi Perfil</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="text-center mb-3">
+            <div class="avatar-circle">
+              <i class="fas fa-user fa-2x"></i>
+            </div>
+          </div>
+          <input type="text" class="form-control mb-2" id="perfilNombre" placeholder="Tu nombre">
+          <input type="email" class="form-control mb-2" id="perfilEmail" placeholder="Correo">
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button class="btn btn-primary" onclick="guardarPerfil()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Ingreso -->
+  <div class="modal fade" id="modalIngreso" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title"><i class="fas fa-plus-circle"></i> Nuevo Ingreso</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Monto</label>
+            <div class="input-group">
+              <span class="input-group-text">$</span>
+              <input type="number" class="form-control" id="montoIngreso" min="1" required>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Concepto</label>
+            <input type="text" class="form-control" id="conceptoIngreso" placeholder="Ej: Salario, Venta...">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Fecha</label>
+            <input type="date" class="form-control" id="fechaIngreso">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button class="btn btn-success" onclick="registrarIngreso()">Registrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Gasto -->
+  <div class="modal fade" id="modalGasto" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title"><i class="fas fa-minus-circle"></i> Nuevo Gasto</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Monto</label>
+            <div class="input-group">
+              <span class="input-group-text"></span>
+              <input type="number" class="form-control" id="montoGasto" min="1" required>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Concepto</label>
+            <input type="text" class="form-control" id="conceptoGasto" placeholder="Ej: Mercado, Transporte...">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Categoría</label>
+            <select class="form-select" id="categoriaGasto">
+              <option value="alimentacion">Alimentación</option>
+              <option value="transporte">Transporte</option>
+              <option value="servicios">Servicios</option>
+              <option value="arriendo">Arriendo</option>
+              <option value="entretenimiento">Entretenimiento</option>
+              <option value="otros">Otros</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Fecha</label>
+            <input type="date" class="form-control" id="fechaGasto">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button class="btn btn-danger" onclick="registrarGasto()">Registrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- notificaciones -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="toastNotificacion" class="toast" role="alert">
+      <div class="toast-header">
+        <i class="fas fa-bell me-2"></i>
+        <strong class="me-auto">MiControl</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+      </div>
+      <div class="toast-body" id="toastMensaje"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
