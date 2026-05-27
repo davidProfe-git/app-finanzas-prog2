@@ -1,5 +1,5 @@
 const express = require('express')
-let nombre = 'Miguel'
+
 const app = express()
 
 app.get('/',(solicitud,respuesta)=>{
