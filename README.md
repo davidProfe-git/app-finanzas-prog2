@@ -10,4 +10,6 @@ aplicación de gastos personales para programación 2
 
 `npm init -y` forma rapida de crear el package.json  
 
-`npm install express` instalar la libreria Express  
+`npm install express` instalar la libreria Express 
+
+`node index.js` inicia el servidor (deben estar en el backend para que funcione)
