@@ -6,9 +6,18 @@ class GastosModel {
         let [movimientos] = await db.query('SELECT nombre, valor, tipo FROM movimiento mov INNER JOIN categoria cat on cat.id_categoria = mov.id_categoria')  //[datos][metadatos]
         return movimientos
     }
+
+    static async obtenerCategoria() {
+        let [categoria] = await db.query('SELECT id_categoria as id, nombre FROM categoria')  //[datos][metadatos]
+        return categoria
+    }
+
+
 }
 
 module.exports = GastosModel
+
+
 //como probar la conexion con la base
 // async function probar() {
 //     const resultado = await GastosModel.consultarGastos()
