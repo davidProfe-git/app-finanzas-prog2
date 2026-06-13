@@ -108,3 +108,28 @@ th {
   background: #fde8e8;
   color: #8b2020;
 }
+
+/* Título centrado */
+.titulo-historial {
+  text-align: center;
+  color: #2c3e50;
+}
+
+/* Celdas de datos con borde y padding igual al de th */
+td {
+  padding: 8px 12px;
+  text-align: center;
+  border-bottom: 1px solid #d0d0d0;
+  color: #2c3e50;
+}
+
+/* Hover en las filas de registros */
+tbody tr:hover,
+table tr:hover td {
+  background: #f0f4f8;
+}
+
+/* Alinea ambas tablas por arriba para que no se vean asimétricas */
+.contenedor-tablas {
+  align-items: start;
+}

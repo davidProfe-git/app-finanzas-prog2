@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <h1>Gestionador de Ingresos y Gastos</h1>
@@ -27,26 +27,39 @@
 
         <button>Registrar</button>
 
+        <div>
+            <h3 class="titulo-historial">HISTORIAL DE REGISTROS</h3>
+        </div>
+
         <div class="contenedor-tablas">
-            <table>
-                <tr>
-                    <th class="th-ingresos" colspan="2">INGRESOS</th>
-                </tr>
-                <tr>
-                    <th>Categoría</th>
-                    <th>Valor</th>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <th class="th-gastos" colspan="2">GASTOS</th>
-                </tr>
-                <tr>
-                    <th>Categoría</th>
-                    <th>Valor</th>
-                </tr>
-            </table>
+            <div id="tabla-ingresos">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="th-ingresos" colspan="2">INGRESOS</th>
+                        </tr>
+                        <tr>
+                            <th>Categoría</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="row-ingreso">
+                    </tbody>
+                </table>
+            </div>
+            <div id="tabla-gastos">
+                <table>
+                    <tr>
+                        <th class="th-gastos" colspan="2">GASTOS</th>
+                    </tr>
+                    <tr>
+                        <th>Categoría</th>
+                        <th>Valor</th>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
+    <script src="./js/app.js"></script>
 </body>
 </html>
