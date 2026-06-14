@@ -4,7 +4,7 @@ const db = require("../db");
 
 router.get("/", (req, res) => {
   db.query("SELECT * FROM ingresos", (err, results) => {
-    if (err) return res.status(500).json({ error: err.message });
+    if (err) return res.status(500).json({ error: err });
     res.json(results);
   });
 });
@@ -14,9 +14,9 @@ router.post("/", (req, res) => {
   db.query(
     "INSERT INTO ingresos (usuario_id, descripcion, monto, fecha) VALUES (?, ?, ?, ?)",
     [usuario_id, descripcion, monto, fecha],
-    (err, results) => {
-      if (err) return res.status(500).json({ error: err.message });
-      res.json({ mensaje: "Ingreso creado ✅", id: results.insertId });
+    (err, result) => {
+      if (err) return res.status(500).json({ error: err });
+      res.json({ mensaje: "Ingreso creado", id: result.insertId });
     }
   );
 });
