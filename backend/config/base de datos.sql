@@ -46,3 +46,6 @@ INSERT INTO movimientos (usuario_id, categoria_id, monto, fecha) VALUES
 (1, 4, 420000.00,  '2026-06-03'),  -- gasto: Comida
 (2, 5, 150000.00,  '2026-06-06'),  -- gasto: Transporte
 (1, 6, 320000.00,  '2026-06-10'); -- gasto: Servicios
+
+SELECT c.tipo_categoria, c.nombre_categoria, m.monto, m.fecha FROM movimientos m
+INNER JOIN categorias c ON m.categoria_id = c.categoria_id;
