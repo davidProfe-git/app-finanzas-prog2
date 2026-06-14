@@ -38,6 +38,14 @@ INSERT INTO categorias (nombre_categoria, tipo_categoria, descripcion) VALUES
 ('Transporte', 'gasto', 'Gasolina y transporte público'),
 ('Servicios', 'gasto', 'Luz, agua, internet');
 
+INSERT INTO categorias (nombre_categoria, tipo_categoria, descripcion) VALUES
+('Arriendo', 'gasto', 'Pago mensual del arriendo'),
+('Entretenimiento', 'gasto', 'Diversion y Ocio'),
+('Tecnología', 'gasto', 'Gastos en dispositivos y software'),
+('Ganancia ocasional', 'ingreso', 'Ganancias por juegos de azar o loterías'),
+('Honorarios profesionales', 'ingreso', 'Servicios profesionales prestados'),
+('Bonos y Aguinaldos', 'ingreso', 'Bonos y primas pagadas');
+
 -- Movimientos (3 ingresos, 3 gastos)
 INSERT INTO movimientos (usuario_id, categoria_id, monto, fecha) VALUES
 (1, 1, 3500000.00, '2026-06-01'),  -- ingreso: Salario
@@ -49,3 +57,5 @@ INSERT INTO movimientos (usuario_id, categoria_id, monto, fecha) VALUES
 
 SELECT c.tipo_categoria, c.nombre_categoria, m.monto, m.fecha FROM movimientos m
 INNER JOIN categorias c ON m.categoria_id = c.categoria_id;
+
+SELECT * FROM categorias;

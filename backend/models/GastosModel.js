@@ -7,14 +7,11 @@ class GastosModel {
         return movimientos
     }
 
+    static async consultarCategorias() {
+        let [categorias] = await db.query('SELECT * FROM categorias')
+        return categorias
+    }
+
 }
 
 module.exports = GastosModel
-
-// Clase solo para probar que la conexión funcione
-/*async function probar() {
-    const resultado = await GastosModel.consultarGastos()
-    console.log(resultado)
-}
-
-probar()*/
