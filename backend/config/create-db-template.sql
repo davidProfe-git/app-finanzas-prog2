@@ -42,7 +42,7 @@ VALUES
 
 INSERT INTO usuario(usuario, clave)
 VALUES
-('david', '123456');
+('eileen', '123456');
 
 INSERT INTO movimiento(
   usuario,
