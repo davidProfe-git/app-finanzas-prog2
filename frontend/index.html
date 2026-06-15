@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control Financiero</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 
@@ -20,6 +23,7 @@
                 <span class="icono-logo">◈</span>
                 <span class="nombre-app">Finanzas</span>
             </div>
+
             <span class="fecha-hoy" id="fechaHoy"></span>
         </header>
 
@@ -27,21 +31,27 @@
         <div class="total">
             <p class="total-etiqueta">Balance disponible</p>
             <p class="total-monto">$1.300.000</p>
+
             <div class="total-barra">
                 <div class="total-barra-fill"></div>
             </div>
+
             <div class="total-stats">
+
                 <div class="stat">
                     <span class="stat-dot ingreso"></span>
                     <span class="stat-label">Ingresos</span>
                     <span class="stat-valor">$2.500.000</span>
                 </div>
+
                 <div class="stat-divider"></div>
+
                 <div class="stat">
                     <span class="stat-dot gasto"></span>
                     <span class="stat-label">Gastos</span>
                     <span class="stat-valor">$1.200.000</span>
                 </div>
+
             </div>
         </div>
 
@@ -52,6 +62,7 @@
                 <button class="btn-ingresos">
                     <span class="btn-icono">+</span>
                 </button>
+
                 <span class="btn-etiqueta">Ingresos</span>
             </div>
 
@@ -59,6 +70,7 @@
                 <button class="btn-gastos">
                     <span class="btn-icono">−</span>
                 </button>
+
                 <span class="btn-etiqueta">Gastos</span>
             </div>
 
@@ -71,25 +83,34 @@
 
             <div class="campo">
                 <label for="categoria">Categoría</label>
+
                 <div class="select-wrapper">
+
                     <select id="categoria">
                         <option value="">Selecciona una opción</option>
-                        <option>🍔 Comida</option>
-                        <option>💡 Servicios</option>
-                        <option>🚌 Transporte</option>
-                        <option>📶 Internet</option>
-                        <option>👕 Ropa</option>
                     </select>
+
                     <span class="select-arrow">›</span>
+
                 </div>
             </div>
 
             <div class="campo">
+
                 <label for="monto">Monto</label>
+
                 <div class="input-wrapper">
+
                     <span class="input-prefijo">$</span>
-                    <input type="number" id="monto" placeholder="20.000">
+
+                    <input
+                        type="number"
+                        id="monto"
+                        placeholder="20.000"
+                    >
+
                 </div>
+
             </div>
 
             <button class="guardar">
@@ -103,65 +124,11 @@
 
             <div class="historial-encabezado">
                 <p class="historial-titulo">Historial de gastos</p>
-                <span class="historial-badge">6 registros</span>
+                <span class="historial-badge">Registros BD</span>
             </div>
 
-            <ul class="historial-lista">
-
-                <li class="historial-item">
-                    <div class="item-icono" style="background:#fff3e0; color:#f57c00;">🍔</div>
-                    <div class="item-info">
-                        <span class="item-nombre">Comida</span>
-                        <span class="item-fecha">Hoy, 12:30 pm</span>
-                    </div>
-                    <span class="item-monto gasto">−$18.000</span>
-                </li>
-
-                <li class="historial-item">
-                    <div class="item-icono" style="background:#e3f2fd; color:#1565c0;">🚌</div>
-                    <div class="item-info">
-                        <span class="item-nombre">Transporte</span>
-                        <span class="item-fecha">Hoy, 8:15 am</span>
-                    </div>
-                    <span class="item-monto gasto">−$5.200</span>
-                </li>
-
-                <li class="historial-item">
-                    <div class="item-icono" style="background:#e8f5e9; color:#2e7d32;">💰</div>
-                    <div class="item-info">
-                        <span class="item-nombre">Ingreso</span>
-                        <span class="item-fecha">Ayer, 9:00 am</span>
-                    </div>
-                    <span class="item-monto ingreso">+$800.000</span>
-                </li>
-
-                <li class="historial-item">
-                    <div class="item-icono" style="background:#fce4ec; color:#c62828;">💡</div>
-                    <div class="item-info">
-                        <span class="item-nombre">Servicios</span>
-                        <span class="item-fecha">Ayer, 3:00 pm</span>
-                    </div>
-                    <span class="item-monto gasto">−$120.000</span>
-                </li>
-
-                <li class="historial-item">
-                    <div class="item-icono" style="background:#f3e5f5; color:#6a1b9a;">📶</div>
-                    <div class="item-info">
-                        <span class="item-nombre">Internet</span>
-                        <span class="item-fecha">20 may, 11:00 am</span>
-                    </div>
-                    <span class="item-monto gasto">−$65.000</span>
-                </li>
-
-                <li class="historial-item">
-                    <div class="item-icono" style="background:#e0f7fa; color:#00695c;">👕</div>
-                    <div class="item-info">
-                        <span class="item-nombre">Ropa</span>
-                        <span class="item-fecha">19 may, 5:45 pm</span>
-                    </div>
-                    <span class="item-monto gasto">−$95.000</span>
-                </li>
-
+            <!-- AQUÍ APP.JS INSERTARÁ LOS MOVIMIENTOS -->
+            <ul class="historial-lista" id="registros-contenedor">
             </ul>
 
         </div>
@@ -171,10 +138,14 @@
     <script>
         const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
         const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+
         const hoy = new Date();
+
         document.getElementById('fechaHoy').textContent =
             `${dias[hoy.getDay()]}, ${hoy.getDate()} de ${meses[hoy.getMonth()]}`;
     </script>
+
+    <script src="./js/app.js"></script>
 
 </body>
 </html>

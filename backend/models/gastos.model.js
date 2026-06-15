@@ -6,17 +6,16 @@ class GastosModel {
 
         let [movimientos] = await db.query(
             `SELECT 
-                cat.nombre,
+                cat.nombre AS nombre_categoria,
                 mov.valor,
                 mov.tipo
              FROM movimiento mov
-             INNER JOIN categoria cat
+             LEFT JOIN categoria cat
              ON cat.id_categoria = mov.id_categoria`
         )
 
         return movimientos
     }
-
 
     static async obtenerCategoria(){
 
