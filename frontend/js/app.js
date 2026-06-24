@@ -1,9 +1,18 @@
 let registros = document.getElementById('registros-contenedor')
+
+//datos del formulario
+let inp_monto = document.getElementById('monto') 
 let btn_categoria = document.getElementById('categoria')
+let btn_fecha = document.getElementById('fecha')
 
 
 
 
+let btn_ingresos = document.getElementById('boton-ingresos')
+
+
+
+//aca se pintan los datos del select
 fetch('http://localhost:3000/api/categoria')
 .then(datos => datos.json())
 .then((categoria)=>{ 
@@ -16,12 +25,7 @@ fetch('http://localhost:3000/api/categoria')
 }) 
 
 
-
-
-
-
-
-
+//aca se pintan los registros de transacciones
 fetch('http://localhost:3000/api/movimiento')
 .then(datos => datos.json())
 .then((objeto)=>{ 
@@ -35,9 +39,30 @@ fetch('http://localhost:3000/api/movimiento')
                     </div>`
         }else if(objeto.data[i].tipo == "Ingreso"){
               registros.innerHTML += `<div class="fila verde">
-                        <div >${objeto.data[i].nombre}</div>
+                        <div>${objeto.data[i].nombre}</div>
                         <div>$ ${objeto.data[i].valor}</div>
                     </div>`
-        }      
+        }       
     }
 })            
+
+
+
+btn_ingresos.addEventListener('click', ()=> guardar())
+
+
+function guardar(){
+
+    let datosForm = {
+
+     id_categoria: btn_categoria.value, 
+     valor: inp_monto.value, 
+     fecha: btn_fecha.value
+
+    }
+
+
+
+
+
+}

@@ -12,6 +12,15 @@ class GastosModel {
         return categoria
     }
 
+    static async crearMovimiento(datosFormulario){
+        
+        const consulta = 'INSERT INTO movimeinto (usuario, id_categoria, valor, fecha) VALUES(? , ? , ? , ?)'
+        let resultado = await db.query(consulta,['david', ])
+
+    }
+
+
+
 
 }
 
