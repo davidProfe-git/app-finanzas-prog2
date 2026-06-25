@@ -12,6 +12,13 @@ class GastosModel {
         return categorias
     }
 
+    static async crearMovimiento(datosFormulario){
+        
+        const consulta = 'INSERT INTO movimiento (usuario, id_categoria, valor, fecha) VALUES(? , ? , ? , ?)'
+        let resultado = await db.query(consulta,['david', ])
+
+    }
+
 }
 
 module.exports = GastosModel

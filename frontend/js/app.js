@@ -2,6 +2,9 @@ let ingresos = document.getElementById("row-ingreso");
 let gastos = document.getElementById("row-gasto");
 let slt_categorias = document.getElementById("select-categorias");
 
+//datos del formulario
+let value_inserted = document.getElementById('valor')
+
 fetch('http://localhost:3000/api/movimientos')
 .then(datos => datos.json())
 .then((movimientos) => {
@@ -28,7 +31,18 @@ fetch('http://localhost:3000/api/categorias')
 .then((categoriasDb) => {
 
     for(i=0; i<categoriasDb.data.length; i++){
-        slt_categorias.innerHTML += `<option value="${categoriasDb.data[i].nombre_categoria}">${categoriasDb.data[i].nombre_categoria+" ("+categoriasDb.data[i].descripcion+")"}</option>`
+        slt_categorias.innerHTML += `<option value="${categoriasDb.data[i].id_categoria}">${categoriasDb.data[i].nombre_categoria+" ("+categoriasDb.data[i].descripcion+")"}</option>`
     }
 })
+
+function guardar(){
+
+    let datosForm = {
+        
+        id_categoria: slt_categorias.value,
+        valor: value_inserted.value
+        
+    }
+
+}
 

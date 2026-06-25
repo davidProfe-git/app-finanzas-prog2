@@ -5,4 +5,6 @@ const gastosController = require('../controller/GastosController')
 router.get('/movimientos', gastosController.consultarGastos)
 router.get('/categorias', gastosController.consultarCategorias)
 
+//router.post('movimiento/:id', gastosController.crearMovimiento)
+
 module.exports = router
