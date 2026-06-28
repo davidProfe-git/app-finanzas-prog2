@@ -1,9 +1,11 @@
+//Elementos de las tablas de ingresos y gastos
 let ingresos = document.getElementById("row-ingreso");
 let gastos = document.getElementById("row-gasto");
-let slt_categorias = document.getElementById("select-categorias");
 
-//datos del formulario
+//Elementos de los Datos del formulario
 let value_inserted = document.getElementById('valor')
+let slt_categorias = document.getElementById("select-categorias");
+let date = document.getElementById("fecha");
 
 fetch('http://localhost:3000/api/movimientos')
 .then(datos => datos.json())
@@ -38,10 +40,9 @@ fetch('http://localhost:3000/api/categorias')
 function guardar(){
 
     let datosForm = {
-        
-        id_categoria: slt_categorias.value,
-        valor: value_inserted.value
-        
+        categoria_id: slt_categorias.value,
+        monto: value_inserted.value,
+        fecha: date.value
     }
 
 }

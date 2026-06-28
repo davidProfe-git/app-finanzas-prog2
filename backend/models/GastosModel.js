@@ -14,7 +14,7 @@ class GastosModel {
 
     static async crearMovimiento(datosFormulario){
         
-        const consulta = 'INSERT INTO movimiento (usuario, id_categoria, valor, fecha) VALUES(? , ? , ? , ?)'
+        const consulta = 'INSERT INTO movimientos (usuario_id, categoria_id, monto, fecha) VALUES(? , ? , ? , ?)'
         let resultado = await db.query(consulta,['david', ])
 
     }
