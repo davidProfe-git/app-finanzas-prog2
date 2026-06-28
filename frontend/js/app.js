@@ -7,6 +7,9 @@ let value_inserted = document.getElementById('valor')
 let slt_categorias = document.getElementById("select-categorias");
 let date = document.getElementById("fecha");
 
+//Elementos de interacción con el usuario
+let btn_registrar = document.getElementById("btn-registrar")
+
 fetch('http://localhost:3000/api/movimientos')
 .then(datos => datos.json())
 .then((movimientos) => {
@@ -33,11 +36,14 @@ fetch('http://localhost:3000/api/categorias')
 .then((categoriasDb) => {
 
     for(i=0; i<categoriasDb.data.length; i++){
-        slt_categorias.innerHTML += `<option value="${categoriasDb.data[i].id_categoria}">${categoriasDb.data[i].nombre_categoria+" ("+categoriasDb.data[i].descripcion+")"}</option>`
+        slt_categorias.innerHTML += `<option value="${categoriasDb.data[i].categoria_id}">${categoriasDb.data[i].nombre_categoria+" ("+categoriasDb.data[i].descripcion+")"}</option>`
     }
 })
 
+btn_registrar.addEventListener('click',()=>guardar()) 
+
 function guardar(){
+    alert("Se ha registrado el movimiento correctamente")
 
     let datosForm = {
         categoria_id: slt_categorias.value,
