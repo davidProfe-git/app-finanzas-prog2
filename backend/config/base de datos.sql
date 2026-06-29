@@ -18,7 +18,7 @@ CREATE TABLE movimientos(
     movimiento_id INT PRIMARY KEY AUTO_INCREMENT,
     usuario_id INT NOT NULL,
     categoria_id INT NOT NULL,
-    monto DECIMAL(10, 2) NOT NULL,
+    monto INT NOT NULL,
     fecha DATE NOT NULL,
     FOREIGN KEY (usuario_id) REFERENCES usuarios(usuario_id),
     FOREIGN KEY (categoria_id) REFERENCES categorias(categoria_id)
@@ -61,5 +61,3 @@ INNER JOIN categorias c ON m.categoria_id = c.categoria_id;
 SELECT * FROM categorias ORDER BY tipo_categoria, nombre_categoria;
 
 SELECT * FROM movimientos;
-
-delete from movimientos;
