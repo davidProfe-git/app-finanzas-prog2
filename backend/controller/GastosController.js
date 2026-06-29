@@ -39,6 +39,17 @@ class GastosController{
         })
     }
 
+    static async actualizarMovimiento(req,res){
+        let movimiento_id = req.params
+        let datos_actualizados = req.body
+        const resultado = await model.actualizarMovimiento(movimiento_id, datos_actualizados)
+        res.json({
+            success: true,
+            message: "Movimiento actualizado correctamente",
+            data: resultado
+        })
+    }
+
 }
 
     module.exports = GastosController

@@ -25,6 +25,13 @@ class GastosModel {
         return resultado
     }
 
+    static async actualizarMovimiento(movimiento_id, datos_actualizados){
+        let {categoria_id, monto, fecha} = datos_actualizados
+        const consulta = 'UPDATE movimientos SET categoria_id = ?, monto = ?, fecha = ? WHERE movimiento_id = ?'
+        let resultado = await db.query(consulta, [categoria_id, monto, fecha, movimiento_id])
+        return resultado
+    }
+
 }
 
 module.exports = GastosModel
