@@ -23,13 +23,21 @@ h1 {
   background: #242b3d;
   border: 1px solid #3a4257;
   border-radius: 12px;
-  max-width: 1000px;
-  margin: 0 auto;
+  margin: 0 auto 1.5rem auto;
   padding: 1.5rem 2rem;
   display: flex;
   flex-direction: column;
   gap: 14px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+
+.tarjeta-formulario {
+  max-width: 520px;
+}
+
+.tarjeta-historial {
+  max-width: 1040px;
 }
 
 /* Cada campo con su label arriba */
