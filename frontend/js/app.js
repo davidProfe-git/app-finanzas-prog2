@@ -30,13 +30,13 @@ function cargarMovimientos(){
             let movimiento = movimientos.data[i]
             let tipoCategoria = movimientos.data[i].tipo_categoria
 
-            let fila = `<tr title="${movimientos.data[i].descripcion}">
-                <td>${movimientos.data[i].nombre_categoria}</td>
-                <td>${formatearMoneda(movimientos.data[i].monto)}</td>
-                <td>${formatearFecha(movimientos.data[i].fecha)}</td>
+            let fila = `<tr title="${movimiento.descripcion}">
+                <td>${movimiento.nombre_categoria}</td>
+                <td>${formatearMoneda(movimiento.monto)}</td>
+                <td>${formatearFecha(movimiento.fecha)}</td>
                 <td class="acciones">
                     <span class="icon-editar">✏️</span>
-                    <span class="icon-eliminar">🗑️</span>
+                    <span class="icon-eliminar" onclick="eliminarMovimiento(${movimiento.movimiento_id})">🗑️</span>
                 </td>
             </tr>`
 
@@ -109,6 +109,23 @@ function guardarMovimiento(){
     })
     .catch((error) => {
         alert("Ocurrió un error al registrar el movimiento")
+    })
+}
+
+function eliminarMovimiento(movimiento_id){
+    let confirmado = confirm("¿Estás seguro de eliminar este movimiento?")
+    if (!confirmado){
+        return
+    }
+
+    fetch(`http://localhost:3000/api/delete/movimiento/${movimiento_id}`,{
+        method: 'DELETE'
+    })
+    .then(() => {
+        cargarMovimientos()
+    })
+    .catch((error) => {
+        alert("Ocurrió un error al eliminar el movimiento")
     })
 }
 
