@@ -27,19 +27,19 @@ function cargarMovimientos(){
         gastos.innerHTML = ""
 
         for(let i=0; i<movimientos.data.length; i++){
+            let movimiento = movimientos.data[i]
             let tipoCategoria = movimientos.data[i].tipo_categoria
+
+            let fila = `<tr title="${movimientos.data[i].descripcion}">
+                <td>${movimientos.data[i].nombre_categoria}</td>
+                <td>${formatearMoneda(movimientos.data[i].monto)}</td>
+                <td>${formatearFecha(movimientos.data[i].fecha)}</td>
+                </tr>`
+
             if(tipoCategoria === "ingreso"){
-                ingresos.innerHTML += `<tr title="${movimientos.data[i].descripcion}">
-                <td>${movimientos.data[i].nombre_categoria}</td>
-                <td>${formatearMoneda(movimientos.data[i].monto)}</td>
-                <td>${formatearFecha(movimientos.data[i].fecha)}</td>
-                </tr>`
+                ingresos.innerHTML += fila
             } else if (tipoCategoria === "gasto") {
-                gastos.innerHTML += `<tr title="${movimientos.data[i].descripcion}">
-                <td>${movimientos.data[i].nombre_categoria}</td>
-                <td>${formatearMoneda(movimientos.data[i].monto)}</td>
-                <td>${formatearFecha(movimientos.data[i].fecha)}</td>
-                </tr>`
+                gastos.innerHTML += fila
             }
         }
     })
