@@ -50,6 +50,15 @@ class GastosController{
         })
     }
 
+    static async borrarTodosLosMovimientos(req, res){
+        const queryResult = await model.borrarTodosLosMovimientos()
+        res.json({
+            success: true,
+            message: "Todos los movimientos han sido eliminados correctamente",
+            data: queryResult
+        })
+    }
+
 }
 
     module.exports = GastosController

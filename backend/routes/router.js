@@ -7,5 +7,6 @@ router.get('/categorias', gastosController.consultarCategorias)
 router.post('/submit/movimiento', gastosController.crearMovimiento)
 router.delete('/delete/movimiento/:movimiento_id', gastosController.eliminarMovimiento)
 router.put('/update/movimiento/:movimiento_id', gastosController.actualizarMovimiento)
+router.delete('/delete/movimientos', gastosController.borrarTodosLosMovimientos)
 
 module.exports = router

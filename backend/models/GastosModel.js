@@ -32,6 +32,12 @@ class GastosModel {
         return resultado
     }
 
+    static async borrarTodosLosMovimientos() {
+        const consulta = 'DELETE FROM movimientos'
+        let queryResult = await db.query(consulta)
+        return queryResult
+    }
+
 }
 
 module.exports = GastosModel

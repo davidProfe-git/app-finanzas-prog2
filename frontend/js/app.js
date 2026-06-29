@@ -9,6 +9,7 @@ let date = document.getElementById("fecha");
 
 //Elementos de interacción con el usuario
 let btn_registrar = document.getElementById("btn-registrar")
+let btn_reiniciar = document.getElementById("btn-reiniciar")
 
 //Elementos del modal de edición
 let modal = document.getElementById("modal-editar");
@@ -33,6 +34,7 @@ editarValor.addEventListener('input', () => formatearCampoValor(editarValor));
 btn_registrar.addEventListener('click',()=>guardarMovimiento());
 btnCancelarEditar.addEventListener('click', () => cerrarModal());
 btnGuardarEditar.addEventListener('click', () => guardarEdicion(movimientoIdEditable));
+btn_reiniciar.addEventListener('click', () => reiniciarHistorial());
 
 function cargarMovimientos(){
     fetch('http://localhost:3000/api/movimientos')
@@ -214,4 +216,21 @@ function guardarEdicion(movimientoId){
     .catch((error) => {
         alert("Ocurrió un error al actualizar el movimiento")
     })
+}
+
+function reiniciarHistorial(){
+    let confirmado = confirm("¿Estás seguro de reiniciar el historial de movimientos? Esta acción eliminará todos los registros.");
+    if (!confirmado){
+        return
+    }
+    fetch('http://localhost:3000/api/delete/movimientos',{
+        method: 'DELETE'
+    })
+    .then(() => {
+        cargarMovimientos()
+    })
+    .catch((error) => {
+        alert("Ocurrió un error al reiniciar el historial")
+    })
+
 }
