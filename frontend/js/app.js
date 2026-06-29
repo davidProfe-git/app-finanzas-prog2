@@ -34,7 +34,11 @@ function cargarMovimientos(){
                 <td>${movimientos.data[i].nombre_categoria}</td>
                 <td>${formatearMoneda(movimientos.data[i].monto)}</td>
                 <td>${formatearFecha(movimientos.data[i].fecha)}</td>
-                </tr>`
+                <td class="acciones">
+                    <span class="icon-editar">✏️</span>
+                    <span class="icon-eliminar">🗑️</span>
+                </td>
+            </tr>`
 
             if(tipoCategoria === "ingreso"){
                 ingresos.innerHTML += fila
