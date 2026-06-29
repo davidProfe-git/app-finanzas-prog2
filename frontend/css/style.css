@@ -23,7 +23,7 @@ h1 {
   background: #242b3d;
   border: 1px solid #3a4257;
   border-radius: 12px;
-  max-width: 520px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 1.5rem 2rem;
   display: flex;
@@ -40,7 +40,7 @@ h1 {
 }
 
 .campo label {
-  font-size: 13px;
+  font-size: 15px;
   color: #a0a6b8;
 }
 
@@ -48,10 +48,10 @@ input[type="text"],
 input[type="date"],
 select {
   width: 100%;
-  padding: 8px 12px;
+  padding: 10px 14px;
   border: 1px solid #3a4257;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 16px;
   background: #1a1f2e;
   color: #e4e6eb;
   outline: none;
@@ -74,8 +74,8 @@ button {
   color: #fff;
   border: none;
   border-radius: 8px;
-  padding: 10px;
-  font-size: 14px;
+  padding: 12px;
+  font-size: 16px;
   cursor: pointer;
   width: 100%;
 }
@@ -95,7 +95,7 @@ button:hover {
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13px;
+  font-size: 15px;
   border: 1px solid #3a4257;
   border-radius: 8px;
   overflow: hidden;
