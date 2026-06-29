@@ -226,3 +226,43 @@ table tr:hover td {
 .fila-total:hover td {
   background: #2e3650;
 }
+
+
+
+.tarjeta-balance {
+  max-width: 520px;
+}
+
+.balance-detalle {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  padding: 6px 0;
+}
+
+.balance-final {
+  border-top: 2px solid #3a4257;
+  margin-top: 6px;
+  padding-top: 12px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.balance-positivo {
+  color: #7ed99f;
+  font-weight: bold;
+}
+
+.balance-negativo {
+  color: #e88f96;
+  font-weight: bold;
+}
+
+.btn-peligro {
+  background-color: #c0392b;
+  margin-top: 8px;
+}
+
+.btn-peligro:hover {
+  background-color: #a5322a;
+}

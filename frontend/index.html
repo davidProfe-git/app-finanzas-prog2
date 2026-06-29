@@ -75,34 +75,52 @@
             </div>
         </div>
     </div>
+    
+    <!-- TARJETA 3: Balance -->
+    <div class="tarjeta tarjeta-balance">
+        <h3 class="titulo-historial">BALANCE</h3>
+        <div class="balance-detalle">
+            <span>Total Ingresos:</span>
+            <span id="balance-ingresos" class="balance-positivo">$0</span>
+        </div>
+        
+        <div class="balance-detalle">
+            <span>Total Gastos:</span>
+            <span id="balance-gastos" class="balance-negativo">$0</span>
+        </div>
+        <div class="balance-detalle balance-final">
+            <span>Balance:</span>
+            <span id="balance-total">$0</span>
+        </div>
+        <button id="btn-reiniciar" class="btn-peligro">Reiniciar Historial</button>
+    </div>
 
 <!-- Modal de edición de movimientos -->
-    <div id="modal-editar" class="modal-overlay">
-        <div class="modal-contenido">
-            <h3 class="modal-titulo">Editar movimiento</h3>
-            <input type="hidden" id="editar-id">
-            
-            <div class="campo">
-                <label for="editar-valor">Valor</label>
-                <input type="text" id="editar-valor">
-            </div>
-            
-            <div class="campo">
-                <label for="editar-categoria">Categoría</label>
-                <select id="editar-categoria"></select>
-            </div>
-            
-            <div class="campo">
-                <label for="editar-fecha">Fecha</label>
-                <input type="date" id="editar-fecha">
-            </div>
-            
-            <div class="modal-botones">
-                <button id="btn-cancelar-editar" class="btn-cancelar">Cancelar</button>
-                <button id="btn-guardar-editar">Guardar cambios</button>
-            </div>
+<div id="modal-editar" class="modal-overlay">
+    <div class="modal-contenido">
+        <h3 class="modal-titulo">Editar movimiento</h3>
+        <input type="hidden" id="editar-id">
+        <div class="campo">
+            <label for="editar-valor">Valor</label>
+            <input type="text" id="editar-valor">
+        </div>
+        
+        <div class="campo">
+            <label for="editar-categoria">Categoría</label>
+            <select id="editar-categoria"></select>
+        </div>
+        
+        <div class="campo">
+            <label for="editar-fecha">Fecha</label>
+            <input type="date" id="editar-fecha">
+        </div>
+        
+        <div class="modal-botones">
+            <button id="btn-cancelar-editar" class="btn-cancelar">Cancelar</button>
+            <button id="btn-guardar-editar">Guardar cambios</button>
         </div>
     </div>
+</div>
 
     <script src="./js/app.js"></script>
 </body>
