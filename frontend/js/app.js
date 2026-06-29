@@ -43,6 +43,8 @@ function cargarMovimientos(){
 
         ingresos.innerHTML = ""
         gastos.innerHTML = ""
+        let totalIngresos = 0;
+        let totalGastos = 0;
 
         for(let i=0; i<movimientos.data.length; i++){
             let movimiento = movimientos.data[i]
@@ -60,10 +62,20 @@ function cargarMovimientos(){
 
             if(tipoCategoria === "ingreso"){
                 ingresos.innerHTML += fila
+                totalIngresos += Number(movimiento.monto)
             } else if (tipoCategoria === "gasto") {
                 gastos.innerHTML += fila
+                totalGastos += Number(movimiento.monto)
             }
         }
+
+        ingresos.innerHTML += `<tr class="fila-total">
+            <td colspan="4">TOTAL INGRESOS ${formatearMoneda(totalIngresos)}</td>
+        </tr>`
+
+        gastos.innerHTML += `<tr class="fila-total">
+            <td colspan="4">TOTAL GASTOS ${formatearMoneda(totalGastos)}</td>
+        </tr>`
     })
 }
 
@@ -71,12 +83,16 @@ function cargarCategorias(){
     cargarCategoriasEnSelect(slt_categorias);
 }
 
-function cargarCategoriasEnSelect(selectDestino){
+function cargarCategoriasEnSelect(selectDestino,idSeleccionado){
     fetch('http://localhost:3000/api/categorias')
     .then(datos => datos.json())
     .then((categoriasDb) => {
+        selectDestino.innerHTML = `<option value="" selected disabled hidden>-- Seleccione una categoría --</option>`;
         for(let i=0; i<categoriasDb.data.length; i++){
             selectDestino.innerHTML += `<option value="${categoriasDb.data[i].categoria_id}" title="${categoriasDb.data[i].descripcion}">[${categoriasDb.data[i].tipo_categoria.toUpperCase()}] ${categoriasDb.data[i].nombre_categoria}</option>`
+        }
+        if(idSeleccionado !== undefined){
+            selectDestino.value = idSeleccionado;
         }
     })
 }
@@ -156,7 +172,7 @@ function editarMovimiento(movimiento_id){
     editarValor.value = formatearMoneda(movimiento.monto);
     editarFecha.value = movimiento.fecha.split("T")[0];
     
-    cargarCategoriasEnSelect(editarCategoria);    
+    cargarCategoriasEnSelect(editarCategoria, movimiento.categoria_id);    
     modal.className = "modal-overlay visible";
 }
 

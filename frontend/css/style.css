@@ -214,3 +214,15 @@ table tr:hover td {
 .btn-cancelar:hover {
   background-color: #2e3650;
 }
+
+.fila-total td {
+  font-weight: bold;
+  background: #2e3650;
+  color: #e4e6eb;
+  border-top: 2px solid #3a4257;
+}
+
+/* Evita que el hover cambie la fila de total */
+.fila-total:hover td {
+  background: #2e3650;
+}
