@@ -30,7 +30,7 @@ class GastosController{
     }
 
     static async eliminarMovimiento(req,res){
-        let movimiento_id = req.params
+        let movimiento_id = req.params.movimiento_id
         const resultado = await model.eliminarMovimiento(movimiento_id)
         res.json({
             success: true,
@@ -40,7 +40,7 @@ class GastosController{
     }
 
     static async actualizarMovimiento(req,res){
-        let movimiento_id = req.params
+        let movimiento_id = req.params.movimiento_id
         let datos_actualizados = req.body
         const resultado = await model.actualizarMovimiento(movimiento_id, datos_actualizados)
         res.json({
