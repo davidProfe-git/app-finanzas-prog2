@@ -35,7 +35,7 @@ function cargarMovimientos(){
                 <td>${formatearMoneda(movimiento.monto)}</td>
                 <td>${formatearFecha(movimiento.fecha)}</td>
                 <td class="acciones">
-                    <span class="icon-editar">✏️</span>
+                    <span class="icon-editar" onclick="editarMovimiento(${movimiento.movimiento_id})">✏️</span>
                     <span class="icon-eliminar" onclick="eliminarMovimiento(${movimiento.movimiento_id})">🗑️</span>
                 </td>
             </tr>`

@@ -164,3 +164,53 @@ table tr:hover td {
 .icon-eliminar:hover {
   opacity: 0.6;
 }
+
+/* Fondo oscuro que cubre toda la pantalla */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-overlay.visible {
+  display: flex;
+}
+
+/* La caja del modal */
+.modal-contenido {
+  background: #242b3d;
+  border: 1px solid #3a4257;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.modal-titulo {
+  text-align: center;
+  color: #e4e6eb;
+}
+
+.modal-botones {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-cancelar {
+  background-color: #3a4257;
+}
+
+.btn-cancelar:hover {
+  background-color: #2e3650;
+}
