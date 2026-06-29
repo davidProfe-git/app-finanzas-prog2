@@ -27,8 +27,18 @@ class GastosController{
             message: "Movimiento creado correctamente",
             data: resultado
         })
-
     }
+
+    static async eliminarMovimiento(req,res){
+        let movimiento_id = req.params
+        const resultado = await model.eliminarMovimiento(movimiento_id)
+        res.json({
+            success: true,
+            message: "Movimiento eliminado correctamente",
+            data: resultado
+        })
+    }
+
 }
 
     module.exports = GastosController

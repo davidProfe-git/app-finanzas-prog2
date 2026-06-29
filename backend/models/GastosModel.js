@@ -19,6 +19,12 @@ class GastosModel {
         return resultado
     }
 
+    static async eliminarMovimiento(movimiento_id){
+        const consulta = 'DELETE FROM movimientos WHERE movimiento_id = ?'
+        let resultado = await db.query(consulta, [movimiento_id])
+        return resultado
+    }
+
 }
 
 module.exports = GastosModel
