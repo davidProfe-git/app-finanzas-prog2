@@ -28,11 +28,11 @@ cargarMovimientos();
 cargarCategorias();
 
 //Eventos de interacción con el usuario
-value_inserted.addEventListener('input', () => formatearCampoValor());
-editarValor.addEventListener('input', () => formatearCampoValor());
+value_inserted.addEventListener('input', () => formatearCampoValor(value_inserted));
+editarValor.addEventListener('input', () => formatearCampoValor(editarValor));
 btn_registrar.addEventListener('click',()=>guardarMovimiento());
 btnCancelarEditar.addEventListener('click', () => cerrarModal());
-btnGuardarEditar.addEventListener('click', () => guardarEdicion());
+btnGuardarEditar.addEventListener('click', () => guardarEdicion(movimientoIdEditable));
 
 function cargarMovimientos(){
     fetch('http://localhost:3000/api/movimientos')
@@ -97,13 +97,13 @@ function formatearFecha(fechaSQL){
     return `${day}/${month}/${year}`
 }
 
-function formatearCampoValor(){
-    let numeroLimpio = value_inserted.value.replace(/[^0-9]/g, '');
+function formatearCampoValor(campoDestino){
+    let numeroLimpio = campoDestino.value.replace(/[^0-9]/g, '');
     if (numeroLimpio === '') {
-        value_inserted.value = ''
+        campoDestino.value = ''
         return
     }
-    value_inserted.value = formatearMoneda(numeroLimpio);
+    campoDestino.value = formatearMoneda(numeroLimpio);
 }
 
 function guardarMovimiento(){
@@ -164,13 +164,13 @@ function cerrarModal(){
     modal.className = "modal-overlay";
 }
 
-function guardarEdicion(){
+function guardarEdicion(movimientoId){
     let datosActualizados = {
         categoria_id: editarCategoria.value,
         monto: editarValor.value.replace(/[^0-9]/g, ''),
         fecha: editarFecha.value
     }
-    fetch(`http://localhost:3000/api/update/movimiento/${movimientoIdEditable}`,{
+    fetch(`http://localhost:3000/api/update/movimiento/${movimientoId}`,{
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
