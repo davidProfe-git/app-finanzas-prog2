@@ -37,7 +37,7 @@ h1 {
 }
 
 .tarjeta-historial {
-  max-width: 1040px;
+  max-width: 920px;
 }
 
 /* Cada campo con su label arriba */
@@ -225,12 +225,6 @@ table tr:hover td {
 /* Evita que el hover cambie la fila de total */
 .fila-total:hover td {
   background: #2e3650;
-}
-
-
-
-.tarjeta-balance {
-  max-width: 520px;
 }
 
 .balance-detalle {

@@ -71,6 +71,7 @@ function cargarMovimientos(){
             }
         }
 
+        /*
         ingresos.innerHTML += `<tr class="fila-total">
             <td colspan="4">TOTAL INGRESOS ${formatearMoneda(totalIngresos)}</td>
         </tr>`
@@ -78,6 +79,7 @@ function cargarMovimientos(){
         gastos.innerHTML += `<tr class="fila-total">
             <td colspan="4">TOTAL GASTOS ${formatearMoneda(totalGastos)}</td>
         </tr>`
+        */
         
         let balance = totalIngresos - totalGastos;
         document.getElementById("balance-ingresos").textContent = formatearMoneda(totalIngresos);
