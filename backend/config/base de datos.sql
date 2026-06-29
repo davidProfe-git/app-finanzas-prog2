@@ -58,4 +58,8 @@ INSERT INTO movimientos (usuario_id, categoria_id, monto, fecha) VALUES
 SELECT c.tipo_categoria, c.nombre_categoria, m.monto, m.fecha FROM movimientos m
 INNER JOIN categorias c ON m.categoria_id = c.categoria_id;
 
-SELECT * FROM categorias;
+SELECT * FROM categorias ORDER BY tipo_categoria, nombre_categoria;
+
+SELECT * FROM movimientos;
+
+delete from movimientos;
