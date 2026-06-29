@@ -26,7 +26,7 @@ function cargarMovimientos(){
         ingresos.innerHTML = ""
         gastos.innerHTML = ""
 
-        for(i=0; i<movimientos.data.length; i++){
+        for(let i=0; i<movimientos.data.length; i++){
             let tipoCategoria = movimientos.data[i].tipo_categoria
             if(tipoCategoria === "ingreso"){
                 ingresos.innerHTML += `<tr title="${movimientos.data[i].descripcion}">
@@ -49,7 +49,7 @@ function cargarCategorias(){
     fetch('http://localhost:3000/api/categorias')
     .then(datos => datos.json())
     .then((categoriasDb) => {
-        for(i=0; i<categoriasDb.data.length; i++){
+        for(let i=0; i<categoriasDb.data.length; i++){
             slt_categorias.innerHTML += `<option value="${categoriasDb.data[i].categoria_id}" title="${categoriasDb.data[i].descripcion}">[${categoriasDb.data[i].tipo_categoria.toUpperCase()}] ${categoriasDb.data[i].nombre_categoria}</option>`
         }
     })
