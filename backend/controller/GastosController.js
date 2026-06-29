@@ -18,6 +18,17 @@ class GastosController{
             data: categorias
         })
     }
+
+    static async crearMovimiento(req,res){
+        let datos_movimiento = req.body
+        const resultado = await model.crearMovimiento(datos_movimiento)
+        res.json({
+            success: true,
+            message: "Movimiento creado correctamente",
+            data: resultado
+        })
+
+    }
 }
 
     module.exports = GastosController
