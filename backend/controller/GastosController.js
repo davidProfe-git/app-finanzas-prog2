@@ -3,8 +3,8 @@ const model = require('../models/GastosModel')
 class GastosController{
 
 
-    static async consultarGastos(req,res){
-        const movimiento = await model.consultarGastos()
+    static async consultarMovimientos(req,res){
+        const movimiento = await model.consultarMovimientos()
         res.json({
             success: true,
             data: movimiento

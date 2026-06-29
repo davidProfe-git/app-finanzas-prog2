@@ -2,8 +2,8 @@ const db = require('../config/db')
 
 class GastosModel {
 
-    static async consultarGastos() {
-        let [movimientos] = await db.query('SELECT c.tipo_categoria, c.nombre_categoria, m.monto, m.fecha, c.descripcion FROM movimientos m INNER JOIN categorias c ON m.categoria_id = c.categoria_id')
+    static async consultarMovimientos() {
+        let [movimientos] = await db.query('SELECT m.movimiento_id, c.tipo_categoria, c.nombre_categoria, m.monto, m.fecha, c.descripcion FROM movimientos m INNER JOIN categorias c ON m.categoria_id = c.categoria_id')
         return movimientos
     }
 
