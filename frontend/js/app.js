@@ -10,18 +10,36 @@ let date = document.getElementById("fecha");
 //Elementos de interacción con el usuario
 let btn_registrar = document.getElementById("btn-registrar")
 
+//Elementos del modal de edición
+let modal = document.getElementById("modal-editar");
+let btnGuardarEditar = document.getElementById("btn-guardar-editar");
+let btnCancelarEditar = document.getElementById("btn-cancelar-editar");
+let editarId = document.getElementById("editar-id");
+let editarValor = document.getElementById("editar-valor");
+let editarCategoria = document.getElementById("editar-categoria");
+let editarFecha = document.getElementById("editar-fecha");
+
+//Variables globales a usar
+let listaMovimientos = [];
+let movimientoIdEditable;
+
 // Cargamos todo al iniciar la página
 cargarMovimientos();
 cargarCategorias();
 
 //Eventos de interacción con el usuario
 value_inserted.addEventListener('input', () => formatearCampoValor());
+editarValor.addEventListener('input', () => formatearCampoValor());
 btn_registrar.addEventListener('click',()=>guardarMovimiento());
+btnCancelarEditar.addEventListener('click', () => cerrarModal());
+btnGuardarEditar.addEventListener('click', () => guardarEdicion());
 
 function cargarMovimientos(){
     fetch('http://localhost:3000/api/movimientos')
     .then(datos => datos.json())
     .then((movimientos) => {
+
+        listaMovimientos = movimientos.data
 
         ingresos.innerHTML = ""
         gastos.innerHTML = ""
@@ -50,11 +68,15 @@ function cargarMovimientos(){
 }
 
 function cargarCategorias(){
+    cargarCategoriasEnSelect(slt_categorias);
+}
+
+function cargarCategoriasEnSelect(selectDestino){
     fetch('http://localhost:3000/api/categorias')
     .then(datos => datos.json())
     .then((categoriasDb) => {
         for(let i=0; i<categoriasDb.data.length; i++){
-            slt_categorias.innerHTML += `<option value="${categoriasDb.data[i].categoria_id}" title="${categoriasDb.data[i].descripcion}">[${categoriasDb.data[i].tipo_categoria.toUpperCase()}] ${categoriasDb.data[i].nombre_categoria}</option>`
+            selectDestino.innerHTML += `<option value="${categoriasDb.data[i].categoria_id}" title="${categoriasDb.data[i].descripcion}">[${categoriasDb.data[i].tipo_categoria.toUpperCase()}] ${categoriasDb.data[i].nombre_categoria}</option>`
         }
     })
 }
@@ -95,7 +117,6 @@ function guardarMovimiento(){
         monto: value_inserted.value.replace(/[^0-9]/g, ''),
         fecha: date.value
     }
-
     fetch('http://localhost:3000/api/submit/movimiento',{
         method: 'POST',
         headers: {
@@ -117,7 +138,6 @@ function eliminarMovimiento(movimiento_id){
     if (!confirmado){
         return
     }
-
     fetch(`http://localhost:3000/api/delete/movimiento/${movimiento_id}`,{
         method: 'DELETE'
     })
@@ -129,3 +149,39 @@ function eliminarMovimiento(movimiento_id){
     })
 }
 
+function editarMovimiento(movimiento_id){
+    let movimiento = listaMovimientos.find(m => m.movimiento_id === movimiento_id);
+    
+    movimientoIdEditable = movimiento_id;
+    editarValor.value = formatearMoneda(movimiento.monto);
+    editarFecha.value = movimiento.fecha.split("T")[0];
+    
+    cargarCategoriasEnSelect(editarCategoria);    
+    modal.className = "modal-overlay visible";
+}
+
+function cerrarModal(){
+    modal.className = "modal-overlay";
+}
+
+function guardarEdicion(){
+    let datosActualizados = {
+        categoria_id: editarCategoria.value,
+        monto: editarValor.value.replace(/[^0-9]/g, ''),
+        fecha: editarFecha.value
+    }
+    fetch(`http://localhost:3000/api/update/movimiento/${movimientoIdEditable}`,{
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datosActualizados)
+    })
+    .then(() => {
+        cerrarModal()
+        cargarMovimientos()
+    })
+    .catch((error) => {
+        alert("Ocurrió un error al actualizar el movimiento")
+    })
+}
