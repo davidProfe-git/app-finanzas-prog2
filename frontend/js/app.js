@@ -14,6 +14,10 @@ let btn_registrar = document.getElementById("btn-registrar")
 cargarMovimientos();
 cargarCategorias();
 
+//Eventos de interacción con el usuario
+value_inserted.addEventListener('input', () => formatearCampoValor());
+btn_registrar.addEventListener('click',()=>guardarMovimiento());
+
 function cargarMovimientos(){
     fetch('http://localhost:3000/api/movimientos')
     .then(datos => datos.json())
@@ -25,12 +29,12 @@ function cargarMovimientos(){
         for(i=0; i<movimientos.data.length; i++){
             let tipoCategoria = movimientos.data[i].tipo_categoria
             if(tipoCategoria === "ingreso"){
-                ingresos.innerHTML += `<tr>
+                ingresos.innerHTML += `<tr title="${movimientos.data[i].descripcion}">
                 <td>${movimientos.data[i].nombre_categoria}</td>
                 <td>${formatearMoneda(movimientos.data[i].monto)}</td>
                 </tr>`
             } else if (tipoCategoria === "gasto") {
-                gastos.innerHTML += `<tr>
+                gastos.innerHTML += `<tr title="${movimientos.data[i].descripcion}">
                 <td>${movimientos.data[i].nombre_categoria}</td>
                 <td>${formatearMoneda(movimientos.data[i].monto)}</td>
                 </tr>`
@@ -44,7 +48,8 @@ function cargarCategorias(){
     .then(datos => datos.json())
     .then((categoriasDb) => {
         for(i=0; i<categoriasDb.data.length; i++){
-            slt_categorias.innerHTML += `<option value="${categoriasDb.data[i].categoria_id}">${categoriasDb.data[i].nombre_categoria+" ("+categoriasDb.data[i].descripcion+")"}</option>`
+            slt_categorias.innerHTML += `<option value="${categoriasDb.data[i].categoria_id}" title="${categoriasDb.data[i].descripcion}">[${categoriasDb.data[i].tipo_categoria.toUpperCase()}] ${categoriasDb.data[i].nombre_categoria}</option>`
+            //(${categoriasDb.data[i].descripcion})
         }
     })
 }
@@ -59,8 +64,6 @@ function formatearMoneda(valor){
     return Number(valor).toLocaleString('es-CO');
 }
 
-value_inserted.addEventListener('input', () => formatearCampoValor())
-
 function formatearCampoValor(){
     let numeroLimpio = value_inserted.value.replace(/[^0-9]/g, '');
     if (numeroLimpio === '') {
@@ -70,14 +73,12 @@ function formatearCampoValor(){
     value_inserted.value = formatearMoneda(numeroLimpio);
 }
 
-btn_registrar.addEventListener('click',()=>guardar()) 
-
-function guardar(){
+function guardarMovimiento(){
     if(value_inserted.value === "" || slt_categorias.value === "" || date.value === ""){
         alert("Por favor completa todos los campos");
         return;
     }
-    
+
     let datosForm = {
         categoria_id: slt_categorias.value,
         monto: value_inserted.value,
@@ -97,7 +98,6 @@ function guardar(){
     })
     .catch((error) => {
         alert("Ocurrió un error al registrar el movimiento")
-        //console.error('Error:', error)
     })
 }
 
