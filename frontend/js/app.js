@@ -71,23 +71,12 @@ function cargarMovimientos(){
             }
         }
 
-        /*
-        ingresos.innerHTML += `<tr class="fila-total">
-            <td colspan="4">TOTAL INGRESOS ${formatearMoneda(totalIngresos)}</td>
-        </tr>`
-
-        gastos.innerHTML += `<tr class="fila-total">
-            <td colspan="4">TOTAL GASTOS ${formatearMoneda(totalGastos)}</td>
-        </tr>`
-        */
-        
+        //Aquí calculamos el balance y lo mostramos en la interfaz
         let balance = totalIngresos - totalGastos;
         document.getElementById("balance-ingresos").textContent = formatearMoneda(totalIngresos);
         document.getElementById("balance-gastos").textContent = formatearMoneda(totalGastos);
-        
         let balanceTotal = document.getElementById("balance-total");
         balanceTotal.textContent = formatearMoneda(balance);
-
         // Color según si el balance es positivo o negativo
         if(balance >= 0){
             balanceTotal.className = "balance-positivo";
