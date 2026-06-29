@@ -32,11 +32,13 @@ function cargarMovimientos(){
                 ingresos.innerHTML += `<tr title="${movimientos.data[i].descripcion}">
                 <td>${movimientos.data[i].nombre_categoria}</td>
                 <td>${formatearMoneda(movimientos.data[i].monto)}</td>
+                <td>${formatearFecha(movimientos.data[i].fecha)}</td>
                 </tr>`
             } else if (tipoCategoria === "gasto") {
                 gastos.innerHTML += `<tr title="${movimientos.data[i].descripcion}">
                 <td>${movimientos.data[i].nombre_categoria}</td>
                 <td>${formatearMoneda(movimientos.data[i].monto)}</td>
+                <td>${formatearFecha(movimientos.data[i].fecha)}</td>
                 </tr>`
             }
         }
@@ -49,7 +51,6 @@ function cargarCategorias(){
     .then((categoriasDb) => {
         for(i=0; i<categoriasDb.data.length; i++){
             slt_categorias.innerHTML += `<option value="${categoriasDb.data[i].categoria_id}" title="${categoriasDb.data[i].descripcion}">[${categoriasDb.data[i].tipo_categoria.toUpperCase()}] ${categoriasDb.data[i].nombre_categoria}</option>`
-            //(${categoriasDb.data[i].descripcion})
         }
     })
 }
@@ -62,6 +63,12 @@ function limpiarFormulario(){
 
 function formatearMoneda(valor){
     return Number(valor).toLocaleString('es-CO');
+}
+
+function formatearFecha(fechaSQL){
+    let solofecha = fechaSQL.split("T")[0]
+    let [year, month, day] = solofecha.split("-")
+    return `${day}/${month}/${year}`
 }
 
 function formatearCampoValor(){
@@ -81,7 +88,7 @@ function guardarMovimiento(){
 
     let datosForm = {
         categoria_id: slt_categorias.value,
-        monto: value_inserted.value,
+        monto: value_inserted.value.replace(/[^0-9]/g, ''),
         fecha: date.value
     }
 
