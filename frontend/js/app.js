@@ -27,12 +27,12 @@ function cargarMovimientos(){
             if(tipoCategoria === "ingreso"){
                 ingresos.innerHTML += `<tr>
                 <td>${movimientos.data[i].nombre_categoria}</td>
-                <td>${movimientos.data[i].monto}</td>
+                <td>${formatearMoneda(movimientos.data[i].monto)}</td>
                 </tr>`
             } else if (tipoCategoria === "gasto") {
                 gastos.innerHTML += `<tr>
                 <td>${movimientos.data[i].nombre_categoria}</td>
-                <td>${movimientos.data[i].monto}</td>
+                <td>${formatearMoneda(movimientos.data[i].monto)}</td>
                 </tr>`
             }
         }
@@ -55,10 +55,29 @@ function limpiarFormulario(){
     date.value = ""
 }
 
+function formatearMoneda(valor){
+    return Number(valor).toLocaleString('es-CO');
+}
+
+value_inserted.addEventListener('input', () => formatearCampoValor())
+
+function formatearCampoValor(){
+    let numeroLimpio = value_inserted.value.replace(/[^0-9]/g, '');
+    if (numeroLimpio === '') {
+        value_inserted.value = ''
+        return
+    }
+    value_inserted.value = formatearMoneda(numeroLimpio);
+}
+
 btn_registrar.addEventListener('click',()=>guardar()) 
 
 function guardar(){
-    //alert("Se ha registrado el movimiento correctamente")
+    if(value_inserted.value === "" || slt_categorias.value === "" || date.value === ""){
+        alert("Por favor completa todos los campos");
+        return;
+    }
+    
     let datosForm = {
         categoria_id: slt_categorias.value,
         monto: value_inserted.value,
@@ -78,7 +97,7 @@ function guardar(){
     })
     .catch((error) => {
         alert("Ocurrió un error al registrar el movimiento")
-        console.error('Error:', error)
+        //console.error('Error:', error)
     })
 }
 
