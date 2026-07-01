@@ -3,8 +3,16 @@ const router = express.Router()
 
 const controller = require('../controller/gastos.controller')
 
+
 router.get('/movimiento', controller.consultarGastos)
 
 router.get('/categoria', controller.obtenerCategoria)
+
+
+router.post('/movimiento',controller.crearMovimiento)
+
+
+router.post('/categoria',controller.crearCategoria)
+
 
 module.exports = router
