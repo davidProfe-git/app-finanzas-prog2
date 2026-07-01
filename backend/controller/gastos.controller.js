@@ -114,7 +114,23 @@ class GastosController{
 
     }
 
+        static async resumen(req,res){
 
+
+    const datos =
+    await model.resumen();
+
+
+    res.json({
+
+        success:true,
+
+        data:datos
+
+    });
+
+
+}
 
 }
 

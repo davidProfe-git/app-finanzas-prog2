@@ -11,8 +11,9 @@ router.get('/categoria', controller.obtenerCategoria)
 
 router.post('/movimiento',controller.crearMovimiento)
 
-
 router.post('/categoria',controller.crearCategoria)
+
+router.get('/resumen', controller.resumen)
 
 
 module.exports = router
