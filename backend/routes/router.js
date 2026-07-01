@@ -16,3 +16,4 @@ router.post('/categoria',controller.crearCategoria)
 router.get('/resumen', controller.resumen)
 
 
+module.exports = router
