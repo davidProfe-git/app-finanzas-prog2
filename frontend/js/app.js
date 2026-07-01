@@ -167,6 +167,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     cargarMovimientos();
 
+    
+
 
 
 
@@ -310,6 +312,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                 cargarMovimientos();
+
+                cargarResumen();
 
 
 
@@ -478,5 +482,53 @@ guardarCategoria.onclick = () => {
 
 
 };
+    function cargarResumen(){
+
+
+fetch("http://localhost:3000/api/resumen")
+
+
+.then(res=>res.json())
+
+
+.then(data=>{
+
+
+const ingresos =
+Number(data.data.ingresos || 0);
+
+
+const gastos =
+Number(data.data.gastos || 0);
+
+
+
+const balance =
+ingresos - gastos;
+
+
+
+document.getElementById("balance")
+.innerText =
+"$" + balance.toLocaleString();
+
+
+
+document.getElementById("totalIngresos")
+.innerText =
+"$" + ingresos.toLocaleString();
+
+
+
+document.getElementById("totalGastos")
+.innerText =
+"$" + gastos.toLocaleString();
+
+
+
+})
+
+
+}
 
 });
