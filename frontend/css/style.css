@@ -697,3 +697,52 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .item-monto.gasto   { color: var(--rojo); }
 .item-monto.ingreso { color: var(--verde); }
+
+.btn-categoria{
+
+    margin-top:12px;
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#e8eaf2;
+    color:#1a1d27;
+    font-weight:600;
+    cursor:pointer;
+
+}
+
+
+
+#nuevaCategoriaBox{
+
+    margin-top:12px;
+
+}
+
+
+
+#nombreCategoria{
+
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #e8eaf2;
+    margin-bottom:10px;
+
+}
+
+
+
+#guardarCategoria{
+
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#00c172;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+
+}
