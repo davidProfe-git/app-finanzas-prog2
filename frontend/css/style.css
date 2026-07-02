@@ -746,3 +746,41 @@ input[type="number"]::-webkit-inner-spin-button {
     cursor:pointer;
 
 }
+
+
+.btn-eliminar{
+
+    width:34px;
+    height:34px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#ffe5e5;
+    color:#ff4d4d;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:.2s;
+
+}
+
+.btn-eliminar:hover{
+
+    background:#ff4d4d;
+    color:white;
+
+}
+
+.acciones-item{
+
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:10px;
+
+    min-width:120px;
+
+}

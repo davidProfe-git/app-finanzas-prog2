@@ -15,5 +15,7 @@ router.post('/categoria',controller.crearCategoria)
 
 router.get('/resumen', controller.resumen)
 
+router.delete("/movimiento/:id", controller.eliminarMovimiento)
+
 
 module.exports = router

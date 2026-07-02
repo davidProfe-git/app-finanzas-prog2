@@ -70,99 +70,80 @@ document.addEventListener("DOMContentLoaded", () => {
     // =========================
 
 
-    function cargarMovimientos(){
+function cargarMovimientos(){
 
+    fetch("http://localhost:3000/api/movimiento")
 
-        fetch("http://localhost:3000/api/movimiento")
+    .then(res => res.json())
 
+    .then(respuesta => {
 
-        .then(res => res.json())
+        console.log("movimientos:", respuesta);
 
+        registros.innerHTML = "";
 
-        .then(respuesta => {
+        respuesta.data.forEach(item => {
 
+            registros.innerHTML += `
 
-            console.log(
-                "movimientos:",
-                respuesta
-            );
+            <li class="historial-item">
 
+                <div class="item-info">
 
-            registros.innerHTML = "";
-
-
-
-            respuesta.data.forEach(item => {
-
-
-                registros.innerHTML += `
-
-
-                <li class="historial-item">
-
-
-                    <div class="item-info">
-
-
-                        <span class="item-nombre">
-
-                            ${item.nombre_categoria}
-
-                        </span>
-
-
-
-                        <span class="item-fecha">
-
-                            ${item.tipo}
-
-                        </span>
-
-
-
-                    </div>
-
-
-
-                    <span class="item-monto ${
-                        
-                        item.tipo === "Ingreso"
-                        ? "ingreso"
-                        : "gasto"
-
-                    }">
-
-                        $${item.valor}
-
+                    <span class="item-nombre">
+                        ${item.nombre_categoria}
                     </span>
 
+                    <span class="item-fecha">
+                        ${item.tipo}
+                    </span>
 
+                </div>
+<div class="acciones-item">
 
-                </li>
+    <span class="item-monto ${item.tipo === "Ingreso" ? "ingreso" : "gasto"}">
+        $${item.valor}
+    </span>
 
+    <button
+        class="btn-eliminar"
+        data-id="${item.id_movimiento}"
+        title="Eliminar movimiento">
 
-                `;
+        🗑
 
+    </button>
 
-            });
+</div>
 
+            </li>
 
-        })
-
-
-        .catch(error => {
-
-            console.error(
-                "Error cargando movimientos:",
-                error
-            );
+            `;
 
         });
 
+        // 👇 ESTE CÓDIGO VA AQUÍ
+        document.querySelectorAll(".btn-eliminar").forEach(boton => {
 
+            boton.onclick = () => {
 
-    }
+                const id = boton.dataset.id;
 
+                eliminarMovimiento(id);
+
+            };
+
+        });
+
+    })
+
+    .catch(error => {
+
+        console.error("Error cargando movimientos:", error);
+
+    });
+
+}
 
 
     cargarMovimientos();
@@ -531,4 +512,47 @@ document.getElementById("totalGastos")
 
 }
 
+
+
+function eliminarMovimiento(id){
+
+    if(!confirm("¿Desea eliminar este movimiento?")){
+        return;
+    }
+
+    fetch(`http://localhost:3000/api/movimiento/${id}`,{
+
+        method:"DELETE"
+
+    })
+
+    .then(res => res.json())
+
+    .then(data => {
+
+        if(data.success){
+
+            alert("Movimiento eliminado");
+
+            cargarMovimientos();
+
+            cargarResumen();
+
+        }else{
+
+            alert("Error al eliminar");
+
+        }
+
+    })
+
+    .catch(error => {
+
+        console.error(error);
+
+        alert("Error conectando al servidor");
+
+    });
+
+}
 });

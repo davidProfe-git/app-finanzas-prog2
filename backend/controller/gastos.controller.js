@@ -131,6 +131,30 @@ class GastosController{
 
 
 }
+static async eliminarMovimiento(req, res){
+
+    try{
+
+        const { id } = req.params;
+
+        const resultado = await model.eliminarMovimiento(id);
+
+        res.json({
+            success: true,
+            data: resultado
+        });
+
+    }catch(error){
+
+        res.json({
+            success: false,
+            error: error.message
+        });
+
+    }
+
+}
+
 
 }
 
