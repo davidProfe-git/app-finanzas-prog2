@@ -25,6 +25,22 @@ class GastosModel {
         return resultado
     }
 
+    static async actualizarGasto(id, usuario, categoria, valor, tipo, fecha) {
+        let [resultado] = await db.query(
+            'UPDATE movimiento SET usuario = ?, categoria = ?, valor = ?, `tipo movimiento` = ?, fecha = ? WHERE id_movimiento = ?',
+            [usuario, categoria, valor, tipo, fecha, id]
+        )
+        return resultado
+    }
+
+    static async eliminarGasto(id) {
+        let [resultado] = await db.query(
+            'DELETE FROM movimiento WHERE id_movimiento = ?',
+            [id]
+        )
+        return resultado
+    }
+
 }
 
 module.exports = GastosModel
