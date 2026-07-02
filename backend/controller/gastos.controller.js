@@ -155,7 +155,41 @@ static async eliminarMovimiento(req, res){
 
 }
 
+static async actualizarMovimiento(req,res){
 
+    try{
+
+        const { id } = req.params;
+        const { valor, tipo, id_categoria } = req.body;
+
+        const resultado = await model.actualizarMovimiento({
+
+            id,
+            valor,
+            tipo,
+            id_categoria
+
+        });
+
+        res.json({
+
+            success:true,
+            data:resultado
+
+        });
+
+    }catch(error){
+
+        res.json({
+
+            success:false,
+            error:error.message
+
+        });
+
+    }
+
+}
 }
 
 

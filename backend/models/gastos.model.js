@@ -23,7 +23,6 @@ class GastosModel {
 
 
 
-
     static async obtenerCategoria(){
 
         let [categoria] = await db.query(
@@ -37,7 +36,6 @@ class GastosModel {
 
         return categoria
     }
-
 
 
 
@@ -62,7 +60,6 @@ class GastosModel {
 
 
 
-
     static async crearCategoria(nombre){
 
         let [resultado] = await db.query(
@@ -76,7 +73,6 @@ class GastosModel {
 
         return resultado
     }
-
 
 
 
@@ -108,20 +104,50 @@ class GastosModel {
 
         return resultado[0]
     }
-  static async eliminarMovimiento(id){
 
-    let [resultado] = await db.query(
 
-        `DELETE FROM movimiento
-        WHERE id_movimiento = ?`,
 
-        [id]
+    static async eliminarMovimiento(id){
 
-    );
+        let [resultado] = await db.query(
 
-    return resultado;
+            `DELETE FROM movimiento
+            WHERE id_movimiento = ?`,
 
-}
+            [id]
+
+        )
+
+        return resultado
+
+    }
+
+
+
+    static async actualizarMovimiento(datos){
+
+        let [resultado] = await db.query(
+
+            `UPDATE movimiento
+            SET
+                id_categoria = ?,
+                valor = ?,
+                tipo = ?
+            WHERE id_movimiento = ?`,
+
+            [
+                datos.id_categoria,
+                datos.valor,
+                datos.tipo,
+                datos.id
+            ]
+
+        )
+
+        return resultado
+
+    }
+
 }
 
 module.exports = GastosModel
